@@ -16,13 +16,20 @@
   </head>
   <body>
     <?php
-      include("resources/templates/header.php");
+      require_once("resources/templates/header.php");
     ?>
+    <!--Wrapper for page content-->
+    <div class="wrapper">
+      <div class="jumbotron">
+        <h1>Carousel</h1>
 
-    <p>This is test</p>
+      </div>
+      <p>More content</p>
+
+      <!--End of wrapper for page content, beginning tag in header.php-->
+      </div>
     <?php
-      include("resources/templates/footer.php");
+      require_once("resources/templates/footer.php");
     ?>
-
   </body>
 </html>
