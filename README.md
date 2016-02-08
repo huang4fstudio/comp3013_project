@@ -1,2 +1,2 @@
 # comp3013_project
-Database Awesomeness
+E-Auction Database Project
