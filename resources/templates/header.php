@@ -14,6 +14,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
     <ul class="nav navbar-nav navbar-right">
         <?php
+        //db_connect();
         include_once('../modules/check_login.php');
 
         $username = $_SESSION['username'];
