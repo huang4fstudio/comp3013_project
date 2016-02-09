@@ -1,3 +1,4 @@
-  <p>
-    Not much in the footer
-  </p>
+<!--Footer-->
+<footer class="footer">
+  Footer content
+</footer>

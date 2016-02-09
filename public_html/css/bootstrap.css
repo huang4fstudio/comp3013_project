@@ -24,7 +24,7 @@ body {
 .wrapper{
     height: 100%;
     margin: 0 auto -50px;
-    padding: 10px;
+    padding: 20px;
     padding-bottom: 50px;     /* Pad bottom by footer height */
 }
 
@@ -4348,6 +4348,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-nav {
   margin: 9.75px -15px;
 }
+
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -4983,6 +4984,12 @@ a.badge:focus {
 .jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #ecf0f1;
+}
+.jumbotron-login {
+  padding: 30px;
   margin-bottom: 30px;
   color: inherit;
   background-color: #ecf0f1;

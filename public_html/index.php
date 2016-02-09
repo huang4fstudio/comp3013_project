@@ -1,17 +1,3 @@
-<?php
-//Start a session
-session_start();
-
-$username = $_SESSION['username'];
-$password = $_SESSION['password'];
-
-//Check if have username and password
-if(!$username && !$password){
-  echo "Hello Guest! <br> <a href=login.php>Login</a> | <a href=register.php>Register</a>";
-}else{
-echo "Hello ".$username." (<a href=logout.php>Logout</a>)";
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +17,7 @@ echo "Hello ".$username." (<a href=logout.php>Logout</a>)";
   </head>
   <body>
     <?php
-      require_once("resources/templates/header.php");
+      require_once("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
@@ -44,7 +30,7 @@ echo "Hello ".$username." (<a href=logout.php>Logout</a>)";
       <!--End of wrapper for page content, beginning tag in header.php-->
       </div>
     <?php
-      require_once("resources/templates/footer.php");
+      require_once("../resources/templates/footer.php");
     ?>
   </body>
 </html>
