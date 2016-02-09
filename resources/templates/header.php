@@ -23,8 +23,9 @@
         //Check if have username and password
         if(!$username && !$password){
           echo "<li class='navbar-text'>Hello Guest!</li> <li><a href='login.php'>Login</a><li> <li><a href=#>Register</a><li>";
-        }else{
-        echo "<li>Hello ".$username."</li>";
+        }
+        else{
+          echo "<li>Hello ".$username."</li>";
         }
         ?>
       <li><a href="#">Cart</a></li>
