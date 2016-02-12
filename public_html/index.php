@@ -30,6 +30,7 @@
       <!--End of wrapper for page content, beginning tag in header.php-->
       </div>
     <?php
+      include_once("../resources/modules/database_connection.php");
       require_once("../resources/templates/footer.php");
     ?>
   </body>
