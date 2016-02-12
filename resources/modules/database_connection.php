@@ -1,8 +1,4 @@
 <?php
-    echo "Test Starts";
-    $results = db_query("SELECT * FROM Test_Table");
-    echo $results;
-
     function db_stmt($raw) {
         $connection = db_connect();
         $stmt = $connection->prepare($raw);
@@ -12,11 +8,9 @@
     function db_query($query) {
         // Connect to the database
         $connection = db_connect();
-        echo $connection;
 
         // Query the database
         $result = mysqli_query($connection,$query);
-        echo $result;
         
         if ($result === false) {
            echo "?"; 
