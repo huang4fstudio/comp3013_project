@@ -4988,7 +4988,7 @@ a.badge:focus {
   color: inherit;
   background-color: #ecf0f1;
 }
-.jumbotron-login {
+.jumbotron-authUser {
   padding: 30px;
   margin-bottom: 30px;
   color: inherit;

@@ -22,35 +22,31 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
+      <div class='jumbotron-authUser'>
+        <form class='form-horizontal' action='?act=login' method='post'>
+          <fieldset>
+            <h3>Welcome back!</h3>
+            <div class='form-group'>
+              <!--Email-->
+              <label for='inputEmail' class='col-md-1 control-label'>Email</label>
+              <div class='col-md-3'>
+                <input type='text' class='form-control' id='inputEmail' placeholder='Email'>
+              </div>
+              <!--Password-->
+              <label for='inputPassword' class='col-md-1 control-label'>Password</label>
+              <div class='col-md-3'>
+                <input type='password' class='form-control' id='inputPassword' placeholder='Password'>
+              </div>
+            </div>
+            <a href='#' class='btn btn-primary' value='login'>Submit</a>
+          </fieldset>
+        </form>
+      </div>
+
       <?php
       session_start();
-      //Displays login form
 
-      function index(){
-        echo "<div class='jumbotron-login'>
-          <form class='form-horizontal' action='?act=login' method='post'>
-            <fieldset>
-              <h3>Welcome back!</h3>
-              <div class='form-group'>
-                <label for='inputEmail' class='col-md-1 control-label'>Email</label>
-                <div class='col-md-3'>
-                  <input type='text' class='form-control' id='inputEmail' placeholder='Email'>
-                </div>
-              </div>
-              <div class='form-group'>
-                <label for='inputPassword' class='col-md-1 control-label'>Password</label>
-                <div class='col-md-3'>
-                  <input type='password' class='form-control' id='inputPassword' placeholder='Password'>
-                </div>
-              </div>
-              <a href='#' class='btn btn-primary' value='login'>Submit</a>
-            </fieldset>
-          </form>
-        </div>
-        ";
-      }
-
-      //This function will find and checks if your data is correct
+      //This function will find and checks if user data is correct
       function login(){
         //Collect info from login form
         $username = $_REQUEST['username'];
