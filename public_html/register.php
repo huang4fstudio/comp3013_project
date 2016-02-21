@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EBid</title>
+    <title>EBid: Register</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -27,19 +27,19 @@
           <fieldset>
             <h3>Thanks for joining!</h3>
             <div class='form-group'>
-              <label for='inputUsername' class='col-md-1 control-label'>Username</label>
+              <label class='col-md-1 control-label'>Username</label>
               <div class='col-md-3'>
                 <input type='text' class='form-control' placeholder='Username'>
               </div>
 
-              <label for='inputEmail' class='col-md-1 control-label'>Email</label>
+              <label class='col-md-1 control-label'>Email</label>
               <div class='col-md-3'>
                 <input type='email' class='form-control' placeholder='Email'>
               </div>
 
-              <label for='inputPassword' class='col-md-1 control-label'>New Password</label>
+              <label class='col-md-1 control-label'>New Password</label>
               <div class='col-md-3'>
-                <input type='password' class='form-control'placeholder='Enter new password'>
+                <input type='password' class='form-control' placeholder='Enter new password'>
               </div>
 
               <label for='inputPassword2' class='col-md-1 control-label'>Confirm Password</label>

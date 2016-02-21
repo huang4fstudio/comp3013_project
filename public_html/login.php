@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EBid</title>
+    <title>EBid: Login</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -30,15 +30,15 @@
               <!--Email-->
               <label for='inputEmail' class='col-md-1 control-label'>Email</label>
               <div class='col-md-3'>
-                <input type='text' class='form-control' id='inputEmail' placeholder='Email'>
+                <input type='text' class='form-control' id='email' placeholder='Email'>
               </div>
               <!--Password-->
               <label for='inputPassword' class='col-md-1 control-label'>Password</label>
               <div class='col-md-3'>
-                <input type='password' class='form-control' id='inputPassword' placeholder='Password'>
+                <input type='password' class='form-control' id='password' placeholder='Password'>
               </div>
             </div>
-            <a href='#' class='btn btn-primary' value='login'>Submit</a>
+            <a href='profile.php' class='btn btn-primary' value='login'>Submit</a>
           </fieldset>
         </form>
       </div>
