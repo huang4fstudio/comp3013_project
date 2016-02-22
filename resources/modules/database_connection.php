@@ -1,4 +1,18 @@
 <?php
+    function db_fetch_array($query) {
+        $result = db_query($query);
+        return mysqli_fetch_array($result);
+    }
+
+    function db_fetch_all($query) {
+        $rows = array();
+        $result = db_query($query);
+        while(($row = mysqli_fetch_array($result))) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
     function db_stmt($raw) {
         $connection = db_connect();
         $stmt = $connection->prepare($raw);
