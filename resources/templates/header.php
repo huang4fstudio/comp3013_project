@@ -27,19 +27,19 @@
           echo "<li>Hello ".$username."</li>";
         }
         ?>
-      <li><a href="#">Cart</a></li>
+      <li><a href="cart.php">Cart</a></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Profile<span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your EBid<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Account</a></li>
+          <li><a href="profile.php">Profile</a></li>
           <li class="divider"></li>
-          <li><a href="#">Bids</a></li>
+          <li><a href="bids.php">Bids</a></li>
           <li class="divider"></li>
-          <li><a href="#">Items</a></li>
+          <li><a href="items.php">Items</a></li>
           <li class="divider"></li>
-          <li><a href="#">Watchlist</a></li>
+          <li><a href="watchlist.php">Watchlist</a></li>
           <li class="divider"></li>
-          <li><a href="#">Settings</a></li>
+          <li><a href="settings.php">Settings</a></li>
 
         </ul>
       </li>

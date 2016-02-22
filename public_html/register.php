@@ -18,12 +18,12 @@
   <body>
 
     <?php
-      require_once("../resources/templates/header.php");
+      require("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
       <div class='jumbotron-authUser'>
-        <form class='form-horizontal'>
+        <form class='form-horizontal' method="post">
           <fieldset>
             <h3>Thanks for joining!</h3>
             <div class='form-group'>
@@ -52,10 +52,7 @@
         </form>
       </div>
       <?php>
-      session_start();
-        if(isset($_SESSION['user'])!=""){
-          header("Location: index.php");
-        }
+        session_start();
 
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){

@@ -4,9 +4,12 @@
 
   db_connect();
   if(!isset($_SESSION['name'])){
-       header("location:login.php");
-       die;
+     echo 'alert("No user logged in")';
+     header("location: login.php");
+     die;
   }
   else {
+    echo 'alert("User logged in")';
+    header("location: profile.php");
   }
 ?>
