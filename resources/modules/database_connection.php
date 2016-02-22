@@ -13,7 +13,7 @@
         $result = mysqli_query($connection,$query);
 
         if ($result === false) {
-           echo "?";
+           echo mysqli_error($connection);
         }
         return $result;
     }
@@ -21,7 +21,7 @@
     function db_connect() {
         $user = 'auction2';
         $password = 'password';
-        $db = 'Test';
+        $db = 'COMP3013';
         $host = 'localhost';
         $port = 8889;
         // Define connection as a static variable, to avoid connecting more than once

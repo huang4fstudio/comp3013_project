@@ -23,7 +23,7 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
       <div class='jumbotron-authUser'>
-        <form class='form-horizontal'>
+        <form class='form-horizontal' method="post">
           <fieldset>
             <h3>Thanks for joining!</h3>
             <div class='form-group'>
@@ -52,19 +52,21 @@
         </form>
       </div>
       <?php>
+   
+      require_once("../resources/modules/database_connection.php");
       session_start();
         if(isset($_SESSION['user'])!=""){
           header("Location: index.php");
         }
-
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
-        	$newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
+        $newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
           $newName = $_POST['inputName'];
         	$newEmail = $_POST['inputEmail'];
         	$newPass =  $_POST['inputPass'];
-        	$newUserQuery = "INSERT INTO User ('id','name', 'email', 'password') VALUES ('$newID', '$newName', '$newEmail', '$newPass')";
-        	$data = mysql_query ($newUserQuery)or die(mysql_error());
+        	$newUserQuery = "INSERT INTO User (id, name, email, password) VALUES (DEFAULT, '$newName', '$newEmail', '$newPass')";
+            echo $newUserQuery;
+        	$data = db_query($newUserQuery) or die(mysql_error());
         	if($data){
              ?>
         	   <script>alert('Successfully registered');</script>
