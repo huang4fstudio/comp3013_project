@@ -1,5 +1,9 @@
 
 <!DOCTYPE html>
+<?php 
+    require_once("../resources/modules/check_login.php");
+    check_login(false);
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -55,7 +59,7 @@
    
       require_once("../resources/modules/database_connection.php");
       session_start();
-        if(isset($_SESSION['user'])!=""){
+        if(isset($_SESSION['username'])!=""){
           header("Location: index.php");
         }
         //Register new user by adding to user database
