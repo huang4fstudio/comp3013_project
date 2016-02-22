@@ -52,7 +52,11 @@
         </form>
       </div>
       <?php>
-        session_start();
+      session_start();
+        if(isset($_SESSION['user'])!=""){
+          header("Location: index.php");
+        }
+
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
         	$newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
@@ -62,10 +66,14 @@
         	$newUserQuery = "INSERT INTO User ('id','name', 'email', 'password') VALUES ('$newID', '$newName', '$newEmail', '$newPass')";
         	$data = mysql_query ($newUserQuery)or die(mysql_error());
         	if($data){
-        	   alert("USER REGISTERED!");
+             ?>
+        	   <script>alert('Successfully registered');</script>
+             <?php
         	}
           else{
-             alert("ERROR WHILE REGISTERING");
+            ?>
+            <script>alert('Error while registering');</script>
+            <?php
           }
         }
       ?>

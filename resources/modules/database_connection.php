@@ -11,9 +11,9 @@
 
         // Query the database
         $result = mysqli_query($connection,$query);
-        
+
         if ($result === false) {
-           echo "?"; 
+           echo "?";
         }
         return $result;
     }
@@ -24,7 +24,7 @@
         $db = 'Test';
         $host = 'localhost';
         $port = 8889;
-        // Define connection as a static variable, to avoid connecting more than once 
+        // Define connection as a static variable, to avoid connecting more than once
         static $connection;
 
         // Try and connect to the database, if a connection has not been established yet
@@ -36,7 +36,7 @@
         // If connection was not successful, handle the error
         if($connection === false) {
             // Handle error - notify administrator, log to a file, show an error screen, etc.
-            return mysqli_connect_error(); 
+            return mysqli_connect_error();
         }
         return $connection;
     }
