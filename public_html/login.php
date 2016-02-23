@@ -1,5 +1,8 @@
-
 <!DOCTYPE html>
+<?php 
+ require_once("../resources/modules/check_login.php");
+ check_login(false);
+ ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -44,6 +47,7 @@
       </div>
 
       <?php
+      require_once("../resources/modules/users.php");
       session_start();
 
       //This function will find and checks if user data is correct
@@ -53,14 +57,10 @@
         $password = $_REQUEST['password'];
 
         //Find if entered data is correct
-        $result = mysql_query("SELECT * FROM users WHERE name='$username' AND password='$password'");
-
-        $row = mysql_fetch_array($result);
+        $row = find_user_username_password($username, $password);
         $id = $row['id'];
 
-        $select_user = mysql_query("SELECT * FROM users WHERE id='$id'");
-
-        $row2 = mysql_fetch_array($select_user);
+        $row2 = find_user_id($id);
         $user = $row2['username'];
 
         if($username != $user){
@@ -73,11 +73,9 @@
               </style>';
         }
 
-        $pass_check = mysql_query("SELECT * FROM users WHERE username='$username' AND id='$id'");
-        $row3 = mysql_fetch_array($pass_check);
+        $row3 = find_user_username_id($username, $id);
         $email = $row3['email'];
-        $select_pass = mysql_query("SELECT * FROM users WHERE username='$username' AND id='$id' AND email='$email'");
-        $row4 = mysql_fetch_array($select_pass);
+        $row4 = find_user_username_id_email($username, $id, $email);
         $real_password = $row4['password'];
 
         if($password != $real_password){

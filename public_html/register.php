@@ -1,5 +1,9 @@
 
 <!DOCTYPE html>
+<?php 
+    require_once("../resources/modules/check_login.php");
+    check_login(false);
+?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -52,16 +56,26 @@
         </form>
       </div>
       <?php>
+<<<<<<< HEAD
         session_start();
 
+=======
+   
+      require_once("../resources/modules/database_connection.php");
+      session_start();
+        if(isset($_SESSION['username'])!=""){
+          header("Location: index.php");
+        }
+>>>>>>> dc07be2d6789bd6a0f900c1e366c170a25632942
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
-        	$newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
+        $newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
           $newName = $_POST['inputName'];
         	$newEmail = $_POST['inputEmail'];
         	$newPass =  $_POST['inputPass'];
-        	$newUserQuery = "INSERT INTO User ('id','name', 'email', 'password') VALUES ('$newID', '$newName', '$newEmail', '$newPass')";
-        	$data = mysql_query ($newUserQuery)or die(mysql_error());
+        	$newUserQuery = "INSERT INTO User (id, name, email, password) VALUES (DEFAULT, '$newName', '$newEmail', '$newPass')";
+            echo $newUserQuery;
+        	$data = db_query($newUserQuery) or die(mysql_error());
         	if($data){
              ?>
         	   <script>alert('Successfully registered');</script>
