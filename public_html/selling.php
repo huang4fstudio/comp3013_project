@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EBid: Auction</title>
+    <title>EBid: Selling</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -21,9 +21,34 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
+
+      <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>
+        <li class="active">Selling</li>
+      </ul>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Currently Selling</h3>
+        </div>
+        <div class="panel-body" class="sell-item">
+          You currently aren't selling anything. Click " 'Sell' to get started!"
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sold</h3>
+        </div>
+        <div class="panel-body" class="sell-item">
+          You have no sold items.
+        </div>
+      </div>
+
     </div>
     <?php
       require_once("../resources/templates/footer.php");
     ?>
+
   </body>
 </html>

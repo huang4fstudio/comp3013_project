@@ -22,6 +22,8 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
     </div>
-
+    <?php
+      require_once("../resources/templates/footer.php");
+    ?>
   </body>
 </html>

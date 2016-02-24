@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EBid: Items</title>
+    <title>EBid: Bids</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -22,6 +22,8 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
     </div>
-
+    <?php
+      require_once("../resources/templates/footer.php");
+    ?>
   </body>
 </html>

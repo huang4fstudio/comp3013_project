@@ -22,15 +22,16 @@ body {
   height: 100%;
 }
 .wrapper{
-    height: 100%;
-    margin: 0 auto -50px;
-    padding: 20px;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-bottom: 50px;     /* Pad bottom by footer height */
+    /*//overflow: scroll;*/
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
+  /*position: fixed;*/
+  /*bottom: 0;*/
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 50px;
@@ -166,6 +167,7 @@ input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
+
 input {
   line-height: normal;
 }
@@ -4982,18 +4984,14 @@ a.badge:focus {
   margin-left: 3px;
 }
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /*padding-top: 30px;
+  padding-bottom: 30px;*/
+  padding: 1%;
   margin-bottom: 30px;
   color: inherit;
   background-color: #ecf0f1;
 }
-.jumbotron-authUser {
-  padding: 30px;
-  margin-bottom: 30px;
-  color: inherit;
-  background-color: #ecf0f1;
-}
+
 .jumbotron h1,
 .jumbotron .h1 {
   color: inherit;

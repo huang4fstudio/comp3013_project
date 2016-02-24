@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<?php 
+<?php
     require_once("../resources/modules/check_login.php");
     check_login(false);
 ?>
@@ -26,7 +26,7 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-      <div class='jumbotron-authUser'>
+      <div class='jumbotron'>
         <form class='form-horizontal' method="post">
           <fieldset>
             <h3>Thanks for joining!</h3>
@@ -60,7 +60,7 @@
         session_start();
 
 =======
-   
+
       require_once("../resources/modules/database_connection.php");
       session_start();
         if(isset($_SESSION['username'])!=""){

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
  require_once("../resources/modules/check_login.php");
  check_login(false);
  ?>
@@ -25,7 +25,7 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-      <div class='jumbotron-authUser'>
+      <div class='jumbotron'>
         <form class='form-horizontal' action='?act=login' method='post'>
           <fieldset>
             <h3>Welcome back!</h3>
