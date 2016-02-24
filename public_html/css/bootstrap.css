@@ -22,18 +22,24 @@ body {
   height: 100%;
 }
 .wrapper{
+    display: block;
+    max-width: 970px;
     margin: 0 auto;
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 50px;     /* Pad bottom by footer height */
-    /*//overflow: scroll;*/
+}
+
+@media (min-width 700px){
+  .form-wrapper {
+      display: block;
+      width: 600px;
+      margin: 0 auto;
+  }
 }
 
 .footer {
-  /*position: fixed;*/
-  /*bottom: 0;*/
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 50px;
   padding: 5px;
   background-color: #ecf0f1;
@@ -2656,6 +2662,7 @@ input[type="search"] {
 }
 .form-group {
   margin-bottom: 15px;
+  display: block;
 }
 .radio,
 .checkbox {
