@@ -28,16 +28,19 @@
       <div class='jumbotron'>
         <form class='form-horizontal' action='?act=login' method='post'>
           <fieldset>
-            <h3>Welcome back!</h3>
+            <h2>Welcome back!</h2>
+
             <div class='form-group'>
               <!--Email-->
               <label for='inputEmail' class='col-md-1 control-label'>Email</label>
-              <div class='col-md-3'>
+              <div class='col-sm-3'>
                 <input type='text' class='form-control' name='inputEmail' placeholder='Email'>
               </div>
+            </div>
+            <div class="form-group">
               <!--Password-->
               <label for='inputPassword' class='col-md-1 control-label'>Password</label>
-              <div class='col-md-3'>
+              <div class='col-sm-3'>
                 <input type='password' class='form-control' name='inputPass' placeholder='Password'>
               </div>
             </div>
