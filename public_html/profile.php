@@ -27,16 +27,8 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
 
-      </div>
-      <?php>
-        session_start();
-        //Register new user by adding to user database
-        function registerUser(){
-
-        }
-      ?>
-      <!--End of wrapper for page content, beginning tag in header.php-->
-      </div>
+    <!--End of wrapper for page content, beginning tag in header.php-->
+    </div>
     <?php
       require_once("../resources/templates/footer.php");
     ?>
