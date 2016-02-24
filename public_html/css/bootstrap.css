@@ -4993,7 +4993,9 @@ a.badge:focus {
 .jumbotron {
   /*padding-top: 30px;
   padding-bottom: 30px;*/
-  padding: 1%;
+  border-radius: 5px;
+  padding-left: 2%;
+  padding-right: 2%;
   margin-bottom: 30px;
   color: inherit;
   background-color: #ecf0f1;
@@ -5011,6 +5013,7 @@ a.badge:focus {
 .jumbotron > hr {
   border-top-color: #cfd9db;
 }
+
 .container .jumbotron,
 .container-fluid .jumbotron {
   border-radius: 6px;
