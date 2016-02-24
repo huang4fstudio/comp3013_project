@@ -30,62 +30,66 @@
         <li class="active">Sell</li>
       </ul>
 
+      <div class="form-wrapper">
         <form class='form-horizontal' method="post">
-          <fieldset>
             <h3>New Listing</h3>
             <div class='form-group'>
               <!--Title-->
               <label class='col-md-1 control-label'>Name</label>
-              <div class='col-md-3'>
+              <div class='col-md-8'>
                 <input type='text' class='form-control' name="listingName"  required>
               </div>
-              <!--Category-->
+            </div>
+
+            <!--Category-->
+            <div class='form-group'>
               <label class='col-md-1 control-label'>Category</label>
               <div class='col-md-3'>
                 <select class="form-control" id="select" name="category" required>
-                  <option>Fashion</option>
                   <option>Electronics</option>
                   <option>Sporting Goods</option>
+                  <option>Fashion</option>
                   <option>Health & Beauty</option>
                   <option>Home & Garden</option>
                   <option>Collectibles & Art</option>
                   <option>Toys</option>
                 </select>
               </div>
+            </div>
               <!--Description-->
-              <label class='col-md-1 control-label'>Description</label>
-              <div class='col-md-3'>
-                <textarea class="form-control" rows="5" id="textArea" name="listingDescription" required></textarea>
-              </div>
-              <!--Reserve Price-->
-              <label class='col-md-1 control-label'>Reserve Price</label>
-              <br>
-              <div class='col-sm-2'>
-                <div class="input-group">
-                  <span class="input-group-addon">£</span>
-                  <input type='text' class='form-control' name="reservePrice"  required>
+              <div class='form-group'>
+                <label class='col-md-2 control-label'>Description</label>
+                <div class='col-md-5'>
+                  <textarea class="form-control" rows="5" id="textArea" name="listingDescription" required></textarea>
                 </div>
               </div>
-
+              <!--Reserve Price-->
+              <div class='form-group'>
+                <label class='col-md-1 control-label'>Reserve Price</label>
+                <div class='col-sm-3'>
+                  <div class="input-group">
+                    <span class="input-group-addon">£</span>
+                    <input type='text' class='form-control' name="reservePrice"  required>
+                  </div>
+                </div>
+              </div>
               <!--End date-->
-              <label class='col-md-1 control-label'>End Date</label>
-              <div class='col-md-3'>
-              <div class="input-group date">
-                <div class='input-group'>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-                  <input type="text" class="form-control">
+              <div class='form-group'>
+                <label class='col-md-1 control-label'>End Date</label>
+                <div class='col-sm-3'>
+                  <div class="input-group date">
+                    <div class='input-group'>
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                      <input type="text" class="form-control" name="endDate" required>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-
-
-         </div>
-
-            <button type="submit" class='btn btn-primary' name="newlisting">List it!</button>
-          </fieldset>
-        </form>
+          <button type="submit" class='btn btn-primary' name="newlisting">List it!</button>
+      </form>
 
     </div>
     <?php
