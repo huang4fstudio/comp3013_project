@@ -27,20 +27,20 @@
           echo "<li>Hello ".$username."</li>";
         }
         ?>
+      <li><a href="newlisting.php">Sell</a></li>
       <li><a href="cart.php">Cart</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your EBid<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li><a href="profile.php">Profile</a></li>
           <li class="divider"></li>
-          <li><a href="bids.php">Bids</a></li>
+          <li><a href="buying.php">Buying</a></li>
           <li class="divider"></li>
-          <li><a href="items.php">Items</a></li>
+          <li><a href="selling.php">Selling</a></li>
           <li class="divider"></li>
           <li><a href="watchlist.php">Watchlist</a></li>
           <li class="divider"></li>
           <li><a href="settings.php">Settings</a></li>
-
         </ul>
       </li>
     </ul>
