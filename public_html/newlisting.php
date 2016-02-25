@@ -46,6 +46,7 @@
               <label class='col-md-1 control-label'>Category</label>
               <div class='col-md-3'>
                 <select class="form-control" id="select" name="category" required>
+                  <option selected disabled>Choose category</option>
                   <option>Electronics</option>
                   <option>Sporting Goods</option>
                   <option>Fashion</option>
