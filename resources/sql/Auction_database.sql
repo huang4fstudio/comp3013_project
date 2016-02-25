@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 23, 2016 at 04:16 PM
+-- Generation Time: Feb 25, 2016 at 04:29 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -46,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `Auction` (
 --   `item_id`
 --       `Item` -> `id`
 --   `seller_id`
---       `User_id` -> `id`
+--       `User` -> `id`
 --
 
 -- --------------------------------------------------------
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `Bid` (
 --   `auction_id`
 --       `Auction` -> `id`
 --   `user_id`
---       `User_id` -> `id`
+--       `User` -> `id`
 --
 
 -- --------------------------------------------------------
@@ -110,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `Feedback` (
 --   `auction_id`
 --       `Auction` -> `id`
 --   `buyer_id`
---       `User_id` -> `id`
+--       `User` -> `id`
 --
 
 -- --------------------------------------------------------
@@ -118,20 +119,21 @@ CREATE TABLE IF NOT EXISTS `Feedback` (
 --
 -- Table structure for table `Item`
 --
--- Creation: Feb 23, 2016 at 03:09 PM
+-- Creation: Feb 25, 2016 at 03:29 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Item` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `owner_id` int(11) NOT NULL
+  `owner_id` int(11) NOT NULL,
+  `image` mediumblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- RELATIONS FOR TABLE `Item`:
 --   `owner_id`
---       `User_id` -> `id`
+--       `User` -> `id`
 --
 
 -- --------------------------------------------------------
@@ -175,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 --   `auction_id`
 --       `Auction` -> `id`
 --   `user_id`
---       `User_id` -> `id`
+--       `User` -> `id`
 --
 
 -- --------------------------------------------------------
@@ -183,13 +185,13 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 --
 -- Table structure for table `User`
 --
--- Creation: Feb 23, 2016 at 02:46 PM
+-- Creation: Feb 25, 2016 at 03:17 PM
 --
 
 CREATE TABLE IF NOT EXISTS `User` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` char(32) NOT NULL,
-  `email` varchar(255) NOT NULL,
   `location` int(11) NOT NULL,
   `seller_rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -203,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 --
 -- Table structure for table `User_id`
 --
--- Creation: Feb 23, 2016 at 03:10 PM
+-- Creation: Feb 25, 2016 at 03:21 PM
 --
 
 CREATE TABLE IF NOT EXISTS `User_id` (
@@ -213,6 +215,8 @@ CREATE TABLE IF NOT EXISTS `User_id` (
 
 --
 -- RELATIONS FOR TABLE `User_id`:
+--   `id`
+--       `User` -> `id`
 --
 
 --
@@ -276,13 +280,13 @@ ALTER TABLE `Roles`
 -- Indexes for table `User`
 --
 ALTER TABLE `User`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `User_id`
 --
 ALTER TABLE `User_id`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -314,10 +318,11 @@ ALTER TABLE `Item`
 ALTER TABLE `Roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `User_id`
+-- AUTO_INCREMENT for table `User`
 --
-ALTER TABLE `User_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+ALTER TABLE `User`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
