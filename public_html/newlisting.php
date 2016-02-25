@@ -58,7 +58,7 @@
             </div>
               <!--Description-->
               <div class='form-group'>
-                <label class='col-md-2 control-label'>Description</label>
+                <label class='col-md-1 control-label'>Details</label>
                 <div class='col-md-5'>
                   <textarea class="form-control" rows="5" id="textArea" name="listingDescription" required></textarea>
                 </div>
