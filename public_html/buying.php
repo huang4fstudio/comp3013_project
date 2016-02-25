@@ -21,6 +21,28 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
+      <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>
+        <li class="active">Bids/Buying</li>
+      </ul>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Currently Bids</h3>
+        </div>
+        <div class="panel-body" class="sell-item">
+          You currently aren't bidding on anything. Explore EBid using the search bar!"
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Bought/Won</h3>
+        </div>
+        <div class="panel-body" class="sell-item">
+          You have no won items.
+        </div>
+      </div>
     </div>
     <?php
       require_once("../resources/templates/footer.php");
