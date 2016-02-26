@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
+ session_start();
  require_once("../resources/modules/check_login.php");
  check_login(false);
  ?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -26,7 +27,7 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
       <div class='jumbotron'>
-        <form class='form-horizontal' action='?act=login' method='post'>
+        <form class='form-horizontal' method='post'>
           <fieldset>
             <h2>Welcome back!</h2>
 
@@ -44,30 +45,24 @@
                 <input type='password' class='form-control' name='inputPass' placeholder='Password'>
               </div>
             </div>
-            <a href='profile.php' class='btn btn-primary' value='login'>Submit</a>
+            <button type='submit' class='btn btn-primary' name='login'>Submit</a>
           </fieldset>
         </form>
       </div>
 
       <?php
       require_once("../resources/modules/users.php");
-      session_start();
-
       //This function will find and checks if user data is correct
-      function login(){
+      if(isset($_POST['login'])){
         //Collect info from login form
-        $username = $_REQUEST['inputEmail'];
-        $password = $_REQUEST['inputPass'];
+        $email = $_POST['inputEmail'];
+        $password = $_POST['inputPass'];
 
         //Find if entered data is correct
-        $row = find_user_username_password($username, $password);
-        $id = $row['id'];
+        $row = find_user_email($email);
 
-        $row2 = find_user_id($id);
-        $user = $row2['username'];
-
-        if($username != $user){
-          die("Username is incorrect");
+        if(!$row){
+          echo "Username is incorrect";
           //Styling from has-error
           echo '<style type="text/css">
               #inputEmail {
@@ -75,37 +70,31 @@
               }
               </style>';
         }
-
-        $row3 = find_user_username_id($username, $id);
-        $email = $row3['email'];
-        $row4 = find_user_username_id_email($username, $id, $email);
-        $real_password = $row4['password'];
-
+        else {
+        $id = $row['id'];
+        $row2 = find_user_id($id);
+        $real_password = $row2['password'];
         if($password != $real_password){
-          die("Password is incorrect");
+          echo "Password is incorrect";
           //Styling from has-error
           echo '<style type="text/css">
               #inputPassword {
                   border: 2px solid #e74c3c;
               }
               </style>';
-        }
+        } else {
 
+        $username = $row2['name'];
       //Finish user's login
-        session_register("username", $username);
-        session_register("password", $password);
-
+        $_SESSION['id'] = $id;
+        $_SESSION['name'] = $username;
+        echo session_id();
+        print_r($_SESSION);
+            }
+            }
         }
 
-        switch($act){
-          default;
-          index();
-          break;
-          case "login";
-          login();
-          break;
-        }
-      ?>
+    ?>
 
       <!--End of wrapper for page content, beginning tag in header.php-->
       </div>

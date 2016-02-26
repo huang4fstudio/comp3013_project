@@ -2,12 +2,12 @@
   function check_login($require_login) {
     session_start();
     if($require_login) {
-        if(!isset($_SESSION['username'])){
+        if(!isset($_SESSION['id'])){
             header("location:login.php");
             die;
         }
     } else {
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['id'])){
             header("location:index.php");
             die;
         }
