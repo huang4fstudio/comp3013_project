@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2016 at 04:29 PM
+-- Generation Time: Feb 26, 2016 at 11:26 AM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -185,15 +185,15 @@ CREATE TABLE IF NOT EXISTS `Roles` (
 --
 -- Table structure for table `User`
 --
--- Creation: Feb 25, 2016 at 03:17 PM
+-- Creation: Feb 26, 2016 at 10:25 AM
 --
 
 CREATE TABLE IF NOT EXISTS `User` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` char(32) NOT NULL,
-  `location` int(11) NOT NULL,
-  `seller_rating` int(11) NOT NULL
+  `location` varchar(255) NOT NULL,
+  `seller_rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
