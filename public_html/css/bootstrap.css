@@ -25,11 +25,12 @@ html, body {
 body {
   margin: 0;
 }
+
 .wrapper{
     overflow: auto;
     display: block;
     min-height: 100%;
-    max-width: 970px;
+    max-width: 1000px;
     margin: 0 auto;
     padding-left: 5%;
     padding-right: 5%;
@@ -53,6 +54,10 @@ body {
   padding-left: 5px;
   padding-top: 5px;
   background-color: #ecf0f1;
+}
+
+#indexCarousel {
+  max-height: 400px;
 }
 
 article,
@@ -1162,8 +1167,10 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  max-height: 400px;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
 }
 .img-rounded {
   border-radius: 6px;
@@ -6465,16 +6472,17 @@ button.close {
 }
 .carousel-caption {
   position: absolute;
-  left: 15%;
-  right: 15%;
+  text-transform: uppercase;
   bottom: 20px;
+  font-size: 300%;
+  font-weight: lighter;
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
   color: #ffffff;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  text-align: left;
 }
+
 .carousel-caption .btn {
   text-shadow: none;
 }
