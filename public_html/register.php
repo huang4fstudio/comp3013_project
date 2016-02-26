@@ -65,8 +65,7 @@
         	$newEmail = $_POST['inputEmail'];
         	$newPass =  $_POST['inputPass'];
             $location = -1;
-            $seller_rating = -1;
-        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', '$seller_rating')";
+        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', NULL)";
             $newEmailQuery = "INSERT INTO User_id (id, email) VALUES (LAST_INSERT_ID(), '$newEmail')";
             echo $newUserQuery;
         	$data = db_query($newUserQuery) or die(mysql_error());
