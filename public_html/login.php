@@ -56,8 +56,8 @@
       //This function will find and checks if user data is correct
       function login(){
         //Collect info from login form
-        $username = $_REQUEST['username'];
-        $password = $_REQUEST['password'];
+        $username = $_REQUEST['inputEmail'];
+        $password = $_REQUEST['inputPass'];
 
         //Find if entered data is correct
         $row = find_user_username_password($username, $password);
