@@ -56,26 +56,21 @@
         </form>
       </div>
       <?php>
-<<<<<<< HEAD
-        session_start();
-
-=======
-
-      require_once("../resources/modules/database_connection.php");
       session_start();
-        if(isset($_SESSION['username'])!=""){
-          header("Location: index.php");
-        }
->>>>>>> dc07be2d6789bd6a0f900c1e366c170a25632942
+      require_once("../resources/modules/database_connection.php");
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
         $newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
           $newName = $_POST['inputName'];
         	$newEmail = $_POST['inputEmail'];
         	$newPass =  $_POST['inputPass'];
-        	$newUserQuery = "INSERT INTO User (id, name, email, password) VALUES (DEFAULT, '$newName', '$newEmail', '$newPass')";
+            $location = -1;
+            $seller_rating = -1;
+        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', '$seller_rating')";
+            $newEmailQuery = "INSERT INTO User_id (id, email) VALUES (LAST_INSERT_ID(), '$newEmail')";
             echo $newUserQuery;
         	$data = db_query($newUserQuery) or die(mysql_error());
+            $data = db_query($newEmailQuery) or die(mysql_error());
         	if($data){
              ?>
         	   <script>alert('Successfully registered');</script>
