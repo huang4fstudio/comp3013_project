@@ -21,14 +21,65 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-      <div class="jumbotron">
-        <h1>Carousel Slider</h1>
+      <!-- <div class="jumbotron"> -->
+        <div id="indexCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#indexCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#indexCarousel" data-slide-to="1"></li>
+          <li data-target="#indexCarousel" data-slide-to="2"></li>
+          <li data-target="#indexCarousel" data-slide-to="3"></li>
+        </ol>
 
-      </div>
-      <p>Featured Auctions</p>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <p class="carousel-caption">
+                Selling is as easy as <br> 1, 2, 3! <br>
+                Learn more!
+            </p>
+            <img src="img/seller.jpg" alt="Seller">
+          </div>
 
-      <!--End of wrapper for page content, beginning tag in header.php-->
-      </div>
+          <div class="item">
+            <p class="carousel-caption">
+                Deals on cameras here!
+            </p>
+            <img src="img/technology.jpg" alt="Technology">
+          </div>
+
+          <div class="item">
+            <p class="carousel-caption">
+                Fashion ideas <br> for spring
+            </p>
+            <img src="img/accessories.jpg" alt="Fashion and Accessories">
+          </div>
+
+          <div class="item">
+            <p class="carousel-caption">
+                New consoles 50% off
+            </p>
+            <img src="img/gaming.jpg" alt="Gaming">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#indexCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#indexCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div><!--End of carousel-->
+
+      <h4>Featured Auctions</h4>
+
+    </div>      <!--End of wrapper for page content, beginning tag in header.php-->
+
+
+
     <?php
       include_once("../resources/modules/database_connection.php");
       require_once("../resources/templates/footer.php");
