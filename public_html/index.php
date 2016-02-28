@@ -25,7 +25,6 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-      <!-- <div class="jumbotron"> -->
         <div id="indexCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -81,7 +80,6 @@
       <h4>Featured Auctions</h4>
 
     </div>      <!--End of wrapper for page content, beginning tag in header.php-->
-
 
 
     <?php
