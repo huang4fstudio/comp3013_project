@@ -122,49 +122,13 @@
         <h4>You may also be interested in</h4>
         <br>
         <div class="panel panel-default">
-          <div class="panel-body" class="related-items">
-            <div class="related-item">
-              <img src="img/placeholder.png" class="thumbnail">
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
+          <div class="panel-body" class="item-thumbnails">
+            <?php
+            //For now, it's just repeating a template file
+              for ($i = 0; $i < 4; $i++) {
+                include("../resources/templates/item_thumbnail.php");
+              }
+            ?>
           </div>
         </div>
       </div>
