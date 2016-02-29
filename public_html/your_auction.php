@@ -73,13 +73,13 @@
 
           <div class="panel-body">
             <div class="seller-info">
-              <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
+              <span class="selling-info">Your Profile: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
               <span class="selling-info">Rating: <span name="seller-rating"></span>0%</span><!--PHP NEEDED: seller rating-->
               <span class="selling-info">Bids: </span><span name="numBids">0</span><!--PHP NEEDED: number of bids-->
               <br>
               <!--PHP NEEDED: end date-->
               <!--JS or PHP NEEDED: Countdown from current time until end date-->
-              <span class="selling-info">End Date: </span><span name="endDate">DD/MM/YYYY 00:00</span>
+              <span class="selling-info">End Date: </span><span name="endDate">DD/MM/YYYY 00:00</span><!--PHP NEEDED: end date-->
             </div>
             <h4>Details</h4>
             <p><!--PHP NEEDED: item details-->
@@ -95,78 +95,21 @@
           </div>
         </div>
 
-        <!--Bidding Section-->
+        <!--Reserve Price-->
         <div class="item-bid">
           <div class="col-sm-4">
-            Starting Bid: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
+            Reserve Price: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
           </div>
-          <div class="bid-input">
-            <div class="col-sm-4">
-              <div class="input-group">
-                <span class="input-group-addon">£</span>
-                <input type='text' class='form-control' placeholder="0.00" name="yourBid">
-              </div>
-            </div>
-            <div class="bid-button">
-              <a href="#" class="btn btn-info">Place Bid!</a>
-            </div>
-
-          </div>
+        </div>
 
         </div>
       </div><!--End of auction details-->
     </div><!--End of row-->
 
-      <!--Related Items-->
+      <!--Bids-->
       <div class="row">
-        <h4>You may also be interested in</h4>
-        <br>
-        <div class="panel panel-default">
-          <div class="panel-body" class="related-items">
-            <div class="related-item">
-              <img src="img/placeholder.png" class="thumbnail">
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
+        <h4>Bids</h4>
 
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-            <div class="related-item">
-              <a href="#">
-                <img src="img/placeholder.png" class="thumbnail">
-              </a>
-              <span>
-                  Lorem ipsum dolor sit amet
-                  <br>
-                  <strong name="itemPrice">£0.00</strong>
-              </span>
-            </div>
-
-          </div>
-        </div>
       </div>
 
 
