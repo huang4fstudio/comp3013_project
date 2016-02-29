@@ -13,6 +13,28 @@
 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
     <ul class="nav navbar-nav navbar-right">
+      <li>
+        <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <!-- <span class="input-group-addon"> -->
+            <!-- <div class='col-md-5'>
+              <select class="form-control" id="select">
+                <option selected disabled>Category</option>
+                <option>Electronics</option>
+                <option>Sporting Goods</option>
+                <option>Fashion</option>
+                <option>Health & Beauty</option>
+                <option>Home & Garden</option>
+                <option>Collectibles & Art</option>
+                <option>Toys</option>
+              </select>
+            </div> -->
+          <!-- </span> -->
+          <input type="text" class="form-control" placeholder="Search"> <!--PHP for search-->
+        </div>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+      </li>
         <?php
         include('../modules/check_login.php');
 

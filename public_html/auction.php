@@ -76,6 +76,10 @@
               <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
               <span class="selling-info">Rating: <span name="seller-rating"></span>0%</span><!--PHP NEEDED: seller rating-->
               <span class="selling-info">Bids: </span><span name="numBids">0</span><!--PHP NEEDED: number of bids-->
+              <br>
+              <!--PHP NEEDED: end date-->
+              <!--JS or PHP NEEDED: Countdown from current time until end date-->
+              <span class="selling-info">End Date: </span><span name="endDate">DD/MM/YYYY 00:00</span>
             </div>
             <h4>Details</h4>
             <p><!--PHP NEEDED: item details-->
@@ -129,7 +133,9 @@
             </div>
 
             <div class="related-item">
-              <img src="img/placeholder.png" class="thumbnail">
+              <a href="#">
+                <img src="img/placeholder.png" class="thumbnail">
+              </a>
               <span>
                   Lorem ipsum dolor sit amet
                   <br>
@@ -138,7 +144,9 @@
             </div>
 
             <div class="related-item">
-              <img src="img/placeholder.png" class="thumbnail">
+              <a href="#">
+                <img src="img/placeholder.png" class="thumbnail">
+              </a>
               <span>
                   Lorem ipsum dolor sit amet
                   <br>
@@ -147,7 +155,9 @@
             </div>
 
             <div class="related-item">
-              <img src="img/placeholder.png" class="thumbnail">
+              <a href="#">
+                <img src="img/placeholder.png" class="thumbnail">
+              </a>
               <span>
                   Lorem ipsum dolor sit amet
                   <br>
