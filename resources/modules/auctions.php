@@ -1,5 +1,5 @@
 <?php
-    require_once("./database_connection.php");
+    require_once("database_connection.php");
     function get_all_auctions() {
        return db_fetch_all("SELECT * FROM Auction");
     }

@@ -78,7 +78,14 @@
       </div><!--End of carousel-->
 
       <h4>Featured Auctions</h4>
-
+      <div>
+        <?php 
+            require_once("../resources/modules/auctions.php");
+            require_once("../resources/modules/auctions_thumbnail.php");
+            $results = get_all_auctions();
+            echo item_html($results);
+        ?>
+      </div>
     </div>      <!--End of wrapper for page content, beginning tag in header.php-->
 
 
