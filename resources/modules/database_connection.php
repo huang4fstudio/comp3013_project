@@ -1,4 +1,8 @@
 <?php
+    function db_last_id() {
+        return mysqli_insert_id(db_connect());
+    }
+
     function db_fetch_array($query) {
         $result = db_query($query);
         return mysqli_fetch_array($result);

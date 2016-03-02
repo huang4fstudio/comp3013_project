@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once("../resources/modules/check_login.php");
+    check_login(true);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -64,6 +69,15 @@
                   <textarea class="form-control" rows="5" id="textArea" name="listingDescription" required></textarea>
                 </div>
               </div>
+
+               <!--Description-->
+              <div class='form-group'>
+                <label class='col-md-1 control-label'>Image</label>
+                <div class='col-md-5'>
+                TBD: Very Complicated...
+                </div>
+              </div>
+
               <!--Reserve Price-->
               <div class='form-group'>
                 <label class='col-md-1 control-label'>Reserve Price</label>
@@ -91,6 +105,25 @@
             </div>
           <button type="submit" class='btn btn-primary' name="newlisting">List it!</button>
       </form>
+      <?php
+        require_once("../resources/modules/auctions.php");
+        require_once("../resources/modules/items.php");
+        if(isset($_POST['newlisting'])) {
+            $name = $_POST['listingName'];
+            $desc = $_POST['listingDescription'];
+            $reserve_price = $_POST['reservePrice'];
+            $end_date = strtotime($_POST['endDate']);
+            $image = NULL;
+            if(count($_FILES) > 0) {
+                if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+                    $image = addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
+                    // $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+                    }
+            }
+            $item_id = new_item($name, $desc, $_SESSION['id'], $image);
+            new_auction($item_id, $reserve_price, $end_date, $_SESSION['id']);
+           }
+        ?>
 
     </div>
     <?php

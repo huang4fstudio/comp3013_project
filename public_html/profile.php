@@ -1,9 +1,9 @@
-
-<!DOCTYPE html>
-<?php
+<?php   
+    session_start();
     require_once("../resources/module/check_login.php");
     check_login(true);
 ?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">

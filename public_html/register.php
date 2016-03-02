@@ -1,9 +1,9 @@
-
-<!DOCTYPE html>
 <?php
+    session_start();
     require_once("../resources/modules/check_login.php");
     check_login(false);
 ?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -55,8 +55,7 @@
           </fieldset>
         </form>
       </div>
-      <?php>
-      session_start();
+      <?php
       require_once("../resources/modules/database_connection.php");
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
