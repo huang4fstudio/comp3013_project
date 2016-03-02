@@ -96,6 +96,7 @@
         </div>
 
         <!--Bidding Section-->
+        <!--TO DO: Add form for POST-->
         <div class="item-bid">
           <div class="col-sm-4">
             Starting Bid: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
