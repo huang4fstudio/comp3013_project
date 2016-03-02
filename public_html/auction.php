@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    require_once("../resources/modules/check_login.php");
+    check_login(true);
+
+    if (!isset($_GET['auction_id'])) {
+        header("location:index.php");   
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

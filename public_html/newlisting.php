@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once("../resources/modules/check_login.php");
+    check_login(true);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
