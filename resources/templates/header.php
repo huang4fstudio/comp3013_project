@@ -36,10 +36,7 @@
         </form>
       </li>
         <?php
-        include('../modules/check_login.php');
-
         $username = $_SESSION['name'];
-        $password = $_SESSION['password'];
 
         //Check if have username and password
         if(!$username && !$password){

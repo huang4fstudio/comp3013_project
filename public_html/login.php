@@ -85,8 +85,8 @@
       //Finish user's login
         $_SESSION['id'] = $id;
         $_SESSION['name'] = $username;
-        echo session_id();
-        print_r($_SESSION);
+        header('Location: index.php');
+        die();
             }
             }
         }

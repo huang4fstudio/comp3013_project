@@ -9,7 +9,7 @@
         return $result;
     }
 
-    function get_item($id) {
-        return db_fetch_all("SELECT * FROM Item WHERE id='$id'");
+    function get_item_id($id) {
+        return db_fetch_array("SELECT * FROM Item WHERE id='$id'");
     }
 ?>
