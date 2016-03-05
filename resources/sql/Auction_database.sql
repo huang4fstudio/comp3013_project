@@ -3,14 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 26, 2016 at 11:26 AM
+-- Generation Time: Mar 05, 2016 at 08:40 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,8 +25,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `Auction`
 --
--- Creation: Feb 23, 2016 at 03:08 PM
---
 
 CREATE TABLE IF NOT EXISTS `Auction` (
   `id` int(11) NOT NULL,
@@ -40,22 +35,10 @@ CREATE TABLE IF NOT EXISTS `Auction` (
   `highest_bid_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Auction`:
---   `highest_bid_id`
---       `Bid` -> `id`
---   `item_id`
---       `Item` -> `id`
---   `seller_id`
---       `User` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Bid`
---
--- Creation: Feb 23, 2016 at 03:08 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Bid` (
@@ -66,20 +49,10 @@ CREATE TABLE IF NOT EXISTS `Bid` (
   `auction_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Bid`:
---   `auction_id`
---       `Auction` -> `id`
---   `user_id`
---       `User` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Category`
---
--- Creation: Feb 23, 2016 at 03:08 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Category` (
@@ -87,16 +60,10 @@ CREATE TABLE IF NOT EXISTS `Category` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Category`:
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Feedback`
---
--- Creation: Feb 23, 2016 at 03:09 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Feedback` (
@@ -106,20 +73,10 @@ CREATE TABLE IF NOT EXISTS `Feedback` (
   `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Feedback`:
---   `auction_id`
---       `Auction` -> `id`
---   `buyer_id`
---       `User` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Item`
---
--- Creation: Feb 25, 2016 at 03:29 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Item` (
@@ -127,21 +84,14 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `owner_id` int(11) NOT NULL,
-  `image` mediumblob NOT NULL
+  `image` mediumblob NOT NULL,
+  `image_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `Item`:
---   `owner_id`
---       `User` -> `id`
---
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Item_category`
---
--- Creation: Feb 23, 2016 at 02:37 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Item_category` (
@@ -149,20 +99,10 @@ CREATE TABLE IF NOT EXISTS `Item_category` (
   `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Item_category`:
---   `category_id`
---       `Category` -> `id`
---   `item_id`
---       `Item` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `Roles`
---
--- Creation: Feb 23, 2016 at 03:09 PM
 --
 
 CREATE TABLE IF NOT EXISTS `Roles` (
@@ -172,20 +112,10 @@ CREATE TABLE IF NOT EXISTS `Roles` (
   `auction_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `Roles`:
---   `auction_id`
---       `Auction` -> `id`
---   `user_id`
---       `User` -> `id`
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `User`
---
--- Creation: Feb 26, 2016 at 10:25 AM
 --
 
 CREATE TABLE IF NOT EXISTS `User` (
@@ -196,28 +126,16 @@ CREATE TABLE IF NOT EXISTS `User` (
   `seller_rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELATIONS FOR TABLE `User`:
---
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `User_id`
---
--- Creation: Feb 25, 2016 at 03:21 PM
 --
 
 CREATE TABLE IF NOT EXISTS `User_id` (
   `email` varchar(255) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS FOR TABLE `User_id`:
---   `id`
---       `User` -> `id`
---
 
 --
 -- Indexes for dumped tables
@@ -321,9 +239,7 @@ ALTER TABLE `Roles`
 -- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
