@@ -17,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/ebid.js"></script>
 
   </head>
   <body>
@@ -48,7 +49,8 @@
               <label class='col-md-3 control-label'>Tell us more</label>
               <br>
               <div class='col-md-7'>
-                <textarea class="form-control" rows="3" name="comment" maxlength="500" placeholder="Maximum 500 characters"></textarea>
+                <textarea class="form-control" rows="3" name="comment" maxlength="500"  onkeyup="countChar(this)"></textarea>
+                <span id="charNum">500</span><span> characters</span>
               </div>
             </div>
           </fieldset>
