@@ -1,11 +1,11 @@
 <?php
     session_start();
-    require_once("../resources/modules/check_login.php");
-    check_login(true);
-
-    if (!isset($_GET['auction_id'])) {
-        header("location:index.php");   
-    }
+    // require_once("../resources/modules/check_login.php");
+    // check_login(true);
+    //
+    // if (!isset($_GET['auction_id'])) {
+    //     header("location:index.php");
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,29 +100,26 @@
               ac ligula vitae, posuere tincidunt justo.
             </p>
           </div>
-          <div class="bid">
-          </div>
         </div>
 
         <!--Bidding Section-->
-        <!--TO DO: Add form for POST-->
         <div class="item-bid">
-          <div class="col-sm-4">
-            Starting Bid: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
-          </div>
-          <div class="bid-input">
+          <form class='form-horizontal' method="post">
             <div class="col-sm-4">
-              <div class="input-group">
-                <span class="input-group-addon">£</span>
-                <input type='text' class='form-control' placeholder="0.00" name="yourBid">
+              Starting Bid: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
+            </div>
+            <div class="bid-input">
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">£</span>
+                  <input type='text' class='form-control' placeholder="0.00" name="yourBid">
+                </div>
+              </div>
+              <div class="bid-button">
+                  <button type="submit" class='btn btn-info' name="placeBid">Place Bid!</button>
               </div>
             </div>
-            <div class="bid-button">
-              <a href="#" class="btn btn-info">Place Bid!</a>
-            </div>
-
-          </div>
-
+          </form>
         </div>
       </div><!--End of auction details-->
     </div><!--End of row-->
