@@ -7,8 +7,14 @@
         }
     }
 
-    function get_all_bids($uid) {
+    function get_all_bids_user($uid) {
         return db_fetch_all("SELECT * FROM Bid WHERE user_id='$uid'");
+    }
+
+    function get_num_bids_auction($auction_id) {
+        $results = db_query("SELECT COUNT(*) AS count FROM Bid WHERE auction_id ='$auction_id'");
+        $row = mysqli_fetch_assoc($results);
+        return $row['count'];
     }
 
 ?>
