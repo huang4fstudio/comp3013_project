@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2016 at 08:40 PM
+-- Generation Time: Mar 06, 2016 at 03:34 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `Auction` (
   `reserve_price` int(11) NOT NULL,
   `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `item_id` int(11) NOT NULL,
-  `seller_id` int(11) NOT NULL,
   `highest_bid_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -147,7 +146,6 @@ CREATE TABLE IF NOT EXISTS `User_id` (
 ALTER TABLE `Auction`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `item_id` (`item_id`),
-  ADD UNIQUE KEY `seller_id` (`seller_id`),
   ADD UNIQUE KEY `highest_bid_id` (`highest_bid_id`);
 
 --
