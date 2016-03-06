@@ -5,11 +5,38 @@
 
     if (!isset($_GET['auction_id'])) {
         header("location:index.php");
+        die();
     }
+
     require_once("../resources/modules/auctions.php");
     require_once("../resources/modules/items.php");
+    require_once("../resources/modules/bids.php");
+    
+    
     $auction = get_auctions_id($_GET['auction_id']);
+    if (!$auction) {
+        header("location:index.php");
+        die();
+    }
+    $highest_bid = get_highest_bid($auction['id']);
     $item = get_item_id($auction['item_id']);
+    $lowest_price = $auction['reserve_price'];
+    if ($highest_bid) {
+        $lowest_price = $highest_bid['price'];
+    }
+    $lowest_price = $lowest_price + 1;
+
+    if (isset($_POST['placeBid'])) {
+        if ($item['owner_id'] === $_SESSION['id'] || $lowest_price > floatval($_POST['yourBid'])) {
+            echo 'Your Bid is not Valid';
+        } else {
+            make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
+        }
+    }
+
+    $auction = get_auctions_id($_GET['auction_id']);
+    $bids_count = get_num_bids_auction($auction['id']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,7 +115,7 @@
             <div class="seller-info">
               <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
               <span class="selling-info">Rating: <span name="seller-rating"></span>0%</span><!--PHP NEEDED: seller rating-->
-              <span class="selling-info">Bids: </span><span name="numBids">0</span><!--PHP NEEDED: number of bids-->
+              <span class="selling-info">Bids: </span><span name="numBids"><?= $bids_count ?></span><!--PHP NEEDED: number of bids-->
 
               <br>
               <!--PHP NEEDED: end date-->
@@ -101,7 +128,7 @@
             </p>
           </div>
         </div>
-
+        <?php if ($item['owner_id'] !== $_SESSION['id']) { ?> 
         <!--Bidding Section-->
         <div class="item-bid">
           <form class='form-horizontal' method="post">
@@ -112,7 +139,7 @@
               <div class="col-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon">£</span>
-                  <input type='text' class='form-control' placeholder="0.00" name="yourBid">
+                  <input type="number" class='form-control' placeholder="<?= $lowest_price ?>" step="1" min="<?= $lowest_price ?>" name="yourBid">
                 </div>
               </div>
               <div class="bid-button">
@@ -121,6 +148,9 @@
             </div>
           </form>
         </div>
+        <?php } else { ?>
+        <span> This is your Auction, your can't bid! </span>
+        <?php } ?>
       </div><!--End of auction details-->
     </div><!--End of row-->
 

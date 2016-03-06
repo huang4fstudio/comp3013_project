@@ -40,4 +40,8 @@
     function get_expired_auctions() {
         return db_fetch_all("SELECT * FROM Auction WHERE end_date > DATE_SUB(now(), INTERVAL 30 MINUTE)");
     }
+
+    function check_auction_feedback($id, $user_id) {
+        return db_fetch_array("SELECT a.* FROM Auction AS a INNER JOIN Bid AS b ON a.highest_bid_id = b.id WHERE now() > end_date AND a.id='$id' AND b.id='$user_id'");
+    }
 ?>

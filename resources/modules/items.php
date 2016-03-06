@@ -8,9 +8,13 @@
     function get_all_items_category($category) {
         return db_fetch_all("SELECT i.* FROM Item AS i INNER JOIN Item_category AS b ON i.id = b.item_id AND b.category_id='$category'");
     }
-
-    function new_item($name, $description, $owner_id, $image) {
+    
+    function new_item_category($category_id, $item_id) {
+        return db_query("INSERT INTO Item_category (category_id, item_id) VALUES ('$category_id', '$item_id')");
+    }
+    function new_item($name, $description, $owner_id, $image, $category) {
         $result = db_query("INSERT INTO Item (id, name, description, owner_id, image) VALUES (DEFAULT, '$name', '$description', '$owner_id', '$image')");
+        
         if ($result) {
             return db_last_id();
         } 

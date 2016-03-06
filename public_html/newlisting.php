@@ -2,6 +2,29 @@
     session_start();
     require_once("../resources/modules/check_login.php");
     check_login(true);
+    
+    require_once("../resources/modules/auctions.php");
+    require_once("../resources/modules/items.php");
+    if(isset($_POST['newlisting'])) {
+        $name = $_POST['listingName'];
+        $desc = $_POST['listingDescription'];
+        $reserve_price = $_POST['reservePrice'];
+        $category_id = $_POST['category'];
+        $end_date = strtotime($_POST['endDate']);
+        
+        $image = NULL;
+           // if(count($_FILES) > 0) {
+             //   if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+               //     $image = addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
+                    // $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
+                 //   }
+            // }
+        $item_id = new_item($name, $desc, $_SESSION['id'], $image);
+        new_item_category($category_id, $item_id);
+        new_auction($item_id, $reserve_price, $end_date);
+        header("Location: index.php");
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,13 +75,13 @@
               <div class='col-md-3'>
                 <select class="form-control" id="select" name="category" required>
                   <option selected disabled>Choose category</option>
-                  <option>Electronics</option>
-                  <option>Sporting Goods</option>
-                  <option>Fashion</option>
-                  <option>Health & Beauty</option>
-                  <option>Home & Garden</option>
-                  <option>Collectibles & Art</option>
-                  <option>Toys</option>
+                  <option value="1">Electronics</option>
+                  <option value="2">Sporting Goods</option>
+                  <option value="3">Fashion</option>
+                  <option value="4">Health & Beauty</option>
+                  <option value="5">Home & Garden</option>
+                  <option value="6">Collectibles & Art</option>
+                  <option value="7">Toys</option>
                 </select>
               </div>
             </div>
@@ -105,28 +128,6 @@
             </div>
           <button type="submit" class='btn btn-primary' name="newlisting">List it!</button>
       </form>
-      <?php
-        require_once("../resources/modules/auctions.php");
-        require_once("../resources/modules/items.php");
-        if(isset($_POST['newlisting'])) {
-            $name = $_POST['listingName'];
-            $desc = $_POST['listingDescription'];
-            $reserve_price = $_POST['reservePrice'];
-            $end_date = strtotime($_POST['endDate']);
-            echo $_POST['endDate'];
-            echo $end_date;
-            $image = NULL;
-           // if(count($_FILES) > 0) {
-             //   if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-               //     $image = addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
-                    // $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-                 //   }
-            // }
-            $item_id = new_item($name, $desc, $_SESSION['id'], $image);
-            new_auction($item_id, $reserve_price, $end_date, $_SESSION['id']);
-           }
-        ?>
-
     </div>
     <?php
       require_once("../resources/templates/footer.php");

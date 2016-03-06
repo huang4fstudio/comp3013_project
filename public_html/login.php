@@ -2,6 +2,39 @@
  session_start();
  require_once("../resources/modules/check_login.php");
  check_login(false);
+
+ require_once("../resources/modules/users.php");
+    $error = "";
+    //This function will find and checks if user data is correct
+    
+    if(isset($_POST['login'])){
+        //Collect info from login form
+        $email = $_POST['inputEmail'];
+        $password = $_POST['inputPass'];
+
+        //Find if entered data is correct
+        $row = find_user_email($email);
+        
+        if(!$row){
+            $error = "username";
+        } else {
+        $id = $row['id'];
+        $row2 = find_user_id($id);
+        $real_password = $row2['password'];
+        if($password != $real_password){
+            $error = "password";
+        } else {
+
+        $username = $row2['name'];
+      //Finish user's login
+        $_SESSION['id'] = $id;
+        $_SESSION['name'] = $username;
+        header('Location: index.php');
+        die();
+            }
+            }
+        }
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,17 +81,7 @@
       </div>
 
       <?php
-      require_once("../resources/modules/users.php");
-      //This function will find and checks if user data is correct
-      if(isset($_POST['login'])){
-        //Collect info from login form
-        $email = $_POST['inputEmail'];
-        $password = $_POST['inputPass'];
-
-        //Find if entered data is correct
-        $row = find_user_email($email);
-
-        if(!$row){
+        if(!$error === "username"){
           echo "Username is incorrect";
           //Styling from has-error
           echo '<style type="text/css">
@@ -66,12 +89,7 @@
                   border: 2px solid #e74c3c;
               }
               </style>';
-        }
-        else {
-        $id = $row['id'];
-        $row2 = find_user_id($id);
-        $real_password = $row2['password'];
-        if($password != $real_password){
+        } else if($error === "password"){
           echo "Password is incorrect";
           //Styling from has-error
           echo '<style type="text/css">
@@ -79,16 +97,6 @@
                   border: 2px solid #e74c3c;
               }
               </style>';
-        } else {
-
-        $username = $row2['name'];
-      //Finish user's login
-        $_SESSION['id'] = $id;
-        $_SESSION['name'] = $username;
-        header('Location: index.php');
-        die();
-            }
-            }
         }
 
     ?>

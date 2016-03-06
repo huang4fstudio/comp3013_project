@@ -1,7 +1,22 @@
 <?php
     session_start();
-    // require_once("../resources/modules/check_login.php");
-    // check_login(false);
+    require_once("../resources/modules/check_login.php");
+    check_login(false);
+    if (!isset($_GET['auction_id'])) {
+        header("Location: index.php");
+    }
+    require_once("../resources/modules/check_login.php");
+    $auction = get_auctions_id($_GET['auction_id']);
+     
+    if (get_feedback($auction['id']) || !check_auction_feedback($auction_id, $_SESSION['id']) {
+        header("Location: index.php");
+    }
+    if (isset($_POST['submitFeedback'])) {
+        $rating = intval($_POST['rating']);
+        $comment = intval($_POST['comment']);
+        submit_feedback($_SESSION['id'], $auction['id'], $rating, $comment);
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +49,13 @@
             <label class='col-md-3 control-label'>How would you rate your experience with this seller?</label>
             <div class='form-group'>
               <div class='col-md-3'>
-                <select class="form-control" name="category" required>
+                <select class="form-control" name="rating" required>
                   <option selected disabled>Choose rating</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
               </div>
             </div>
