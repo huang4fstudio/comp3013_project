@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2016 at 03:34 PM
+-- Generation Time: Mar 06, 2016 at 03:39 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -134,6 +134,17 @@ CREATE TABLE IF NOT EXISTS `User` (
 CREATE TABLE IF NOT EXISTS `User_id` (
   `email` varchar(255) NOT NULL,
   `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Watch_list`
+--
+
+CREATE TABLE IF NOT EXISTS `Watch_list` (
+  `user_id` int(255) NOT NULL,
+  `item_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
