@@ -8,7 +8,7 @@
 <div class="item-thumbnail">
   <img src="img/placeholder.png" class="thumbnail">
   <span>
-    <?= $item['description'] ?> 
+    <a href="auction.php?auction_id=<?= $row['id'] ?>"> <?= $item['description'] ?> </a> 
       <br>
       <strong name="itemPrice">£<?= $row['reserve_price'] ?></strong>
   </span>

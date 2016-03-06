@@ -39,7 +39,7 @@
         $username = $_SESSION['name'];
 
         //Check if have username and password
-        if(!$username && !$password){
+        if(!$username){
           echo "<li class='navbar-text'>Hello Guest!</li> <li><a href='login.php'>Login</a><li> <li><a href='register.php'>Register</a><li>";
         }
         else{

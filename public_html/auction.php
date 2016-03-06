@@ -6,6 +6,10 @@
     if (!isset($_GET['auction_id'])) {
         header("location:index.php");
     }
+    require_once("../resources/modules/auctions.php");
+    require_once("../resources/modules/items.php");
+    $auction = get_auctions_id($_GET['auction_id']);
+    $item = get_item_id($auction['item_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +81,7 @@
       <div class="auction-item-details">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Item Name</h3><!--PHP NEEDED: item name-->
+            <h3 class="panel-title"><?= $item['name'] ?></h3><!--PHP NEEDED: item name-->
           </div>
 
           <div class="panel-body">
@@ -85,19 +89,15 @@
               <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
               <span class="selling-info">Rating: <span name="seller-rating"></span>0%</span><!--PHP NEEDED: seller rating-->
               <span class="selling-info">Bids: </span><span name="numBids">0</span><!--PHP NEEDED: number of bids-->
+
               <br>
               <!--PHP NEEDED: end date-->
               <!--JS or PHP NEEDED: Countdown from current time until end date-->
-              <span class="selling-info">End Date: </span><span name="endDate">DD/MM/YYYY 00:00</span>
+              <span class="selling-info">End Date: </span><span name="endDate"><?= $auction['end_date'] ?></span>
             </div>
             <h4>Details</h4>
             <p><!--PHP NEEDED: item details-->
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Phasellus a tortor non massa condimentum facilisis in non est.
-              Ut vel urna felis. Ut iaculis sem et urna condimentum rutrum at in odio.
-              Nam at magna quis erat lacinia volutpat non a neque. Mauris congue justo
-              tortor, vel suscipit justo feugiat sed. Praesent justo ligula, dapibus
-              ac ligula vitae, posuere tincidunt justo.
+                <?= $item['description'] ?>
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@
         <div class="item-bid">
           <form class='form-horizontal' method="post">
             <div class="col-sm-4">
-              Starting Bid: £<span name="reservePrice">0.00</span> <!--PHP NEEDED: reserve price-->
+              Starting Bid: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
             </div>
             <div class="bid-input">
               <div class="col-sm-4">
@@ -133,7 +133,8 @@
             <?php
             //For now, it's just repeating a template file
               for ($i = 0; $i < 4; $i++) {
-                include("../resources/templates/item_thumbnail.php");
+                
+               // include("../resources/modules/auctions_thumbnail.php");
               }
             ?>
           </div>
