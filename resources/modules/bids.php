@@ -7,6 +7,10 @@
         }
     }
 
+    function get_highest_bid($auction_id) {
+        return db_fetch_array("SELECT b.* FROM Bid AS b INNER JOIN Auction AS a ON b.id=a.highest_bid_id WHERE a.id='$auction_id'"); 
+    }
+
     function get_all_bids_user($uid) {
         return db_fetch_all("SELECT * FROM Bid WHERE user_id='$uid'");
     }
