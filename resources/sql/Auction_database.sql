@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2016 at 04:18 PM
+-- Generation Time: Mar 07, 2016 at 02:20 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -29,9 +29,10 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `Auction` (
   `id` int(11) NOT NULL,
   `reserve_price` int(11) NOT NULL,
-  `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `item_id` int(11) NOT NULL,
-  `highest_bid_id` int(11) DEFAULT NULL
+  `highest_bid_id` int(11) DEFAULT NULL,
+  `views` int(255) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
