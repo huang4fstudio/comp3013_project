@@ -3946,6 +3946,7 @@ tbody.collapse.in {
   line-height: 1.3333333;
   border-radius: 6px;
 }
+
 select.input-group-lg > .form-control,
 select.input-group-lg > .input-group-addon,
 select.input-group-lg > .input-group-btn > .btn {
@@ -3969,9 +3970,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
   line-height: 1.5;
   border-radius: 3px;
 }
-.input-group-search{
-  padding: 0px;
-}
+
 select.input-group-sm > .form-control,
 select.input-group-sm > .input-group-addon,
 select.input-group-sm > .input-group-btn > .btn {
@@ -4003,6 +4002,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   vertical-align: middle;
 }
 .input-group-addon {
+  float: left;
   padding: 10px 15px;
   font-size: 15px;
   font-weight: normal;
