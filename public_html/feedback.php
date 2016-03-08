@@ -5,16 +5,20 @@
     if (!isset($_GET['auction_id'])) {
         header("Location: index.php");
     }
-    require_once("../resources/modules/check_login.php");
+    require_once("../resources/modules/auctions.php");
     $auction = get_auctions_id($_GET['auction_id']);
      
     if (get_feedback($auction['id']) || !check_auction_feedback($auction_id, $_SESSION['id']) {
         header("Location: index.php");
     }
     if (isset($_POST['submitFeedback'])) {
+        require_once("../resources/modules/feedbacks.php");
+        require_once("../resources/modules/uses.php");
+
         $rating = intval($_POST['rating']);
         $comment = intval($_POST['comment']);
         submit_feedback($_SESSION['id'], $auction['id'], $rating, $comment);
+        update_user_rating($auction['seller_id'], get_new_avg($auction['seller_id']));
         header("Location: index.php");
     }
 ?>
