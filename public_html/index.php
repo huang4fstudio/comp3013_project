@@ -1,7 +1,7 @@
 <?php
    session_start();
-   require_once("../resources/modules/check_login.php");
-   check_login(true);
+  //  require_once("../resources/modules/check_login.php");
+  //  check_login(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
           <div class="item active">
             <p class="carousel-caption">
                 Selling is as easy as <br> 1, 2, 3! <br>
-                Learn more!
+                <a href="sell.php">Get Started!</a>
             </p>
             <img src="img/seller.jpg" alt="Seller">
           </div>
@@ -79,7 +79,7 @@
 
       <h4>Featured Auctions</h4>
       <div>
-        <?php 
+        <?php
             require_once("../resources/modules/auctions.php");
             require_once("../resources/modules/auctions_thumbnail.php");
             $results = get_all_auctions();
