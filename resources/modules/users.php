@@ -19,4 +19,8 @@
     function find_user_id($id) {
         return db_fetch_array("SELECT * FROM User WHERE id='$id'");
     }
+
+    function update_user_rating($id, $rating) {
+        return db_query("UPDATE User SET seller_rating='$rating' WHERE id='$id'");
+    }
 ?>

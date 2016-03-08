@@ -12,8 +12,8 @@
     function new_item_category($category_id, $item_id) {
         return db_query("INSERT INTO Item_category (category_id, item_id) VALUES ('$category_id', '$item_id')");
     }
-    function new_item($name, $description, $owner_id, $image, $category) {
-        $result = db_query("INSERT INTO Item (id, name, description, owner_id, image) VALUES (DEFAULT, '$name', '$description', '$owner_id', '$image')");
+    function new_item($name, $description, $owner_id, $image, $imageProperties) {
+        $result = db_query("INSERT INTO Item (id, name, description, owner_id, image, image_type) VALUES (DEFAULT, '$name', '$description', '$owner_id', '$image',  '$imageProperties')");
         
         if ($result) {
             return db_last_id();
