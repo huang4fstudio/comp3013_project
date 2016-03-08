@@ -6,7 +6,7 @@
  require_once("../resources/modules/users.php");
     $error = "";
     //This function will find and checks if user data is correct
-    
+
     if(isset($_POST['login'])){
         //Collect info from login form
         $email = $_POST['inputEmail'];
@@ -14,7 +14,7 @@
 
         //Find if entered data is correct
         $row = find_user_email($email);
-        
+
         if(!$row){
             $error = "username";
         } else {
