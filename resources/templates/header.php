@@ -30,9 +30,9 @@
               </select>
             </div> -->
           <!-- </span> -->
-          <input type="text" class="form-control" placeholder="Search"> <!--PHP for search-->
+          <input type="text" class="form-control" name="searchQuery" placeholder="Search"> <!--PHP for search-->
         </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        <a href="searchResults.php"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></a>
         </form>
       </li>
         <?php
