@@ -1188,7 +1188,8 @@ body {
 input,
 button,
 select,
-textarea {
+textarea,
+option {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -3967,6 +3968,9 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
   font-size: 13px;
   line-height: 1.5;
   border-radius: 3px;
+}
+.input-group-search{
+  padding: 0px;
 }
 select.input-group-sm > .form-control,
 select.input-group-sm > .input-group-addon,
