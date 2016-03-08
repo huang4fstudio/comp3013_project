@@ -13,13 +13,14 @@
         $end_date = strtotime($_POST['endDate']);
         
         $image = NULL;
-           // if(count($_FILES) > 0) {
-             //   if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
-               //     $image = addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
-                    // $imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-                 //   }
-            // }
-        $item_id = new_item($name, $desc, $_SESSION['id'], $image);
+        $imageProperties = NULL;
+        if(count($_FILES) > 0) {
+         if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
+               $image = addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
+               $imageProperties = getimagesize($_FILES['userImage']['tmp_name'])['mime'];
+            }
+        }
+        $item_id = new_item($name, $desc, $_SESSION['id'], $image, $imageProperties);
         new_item_category($category_id, $item_id);
         new_auction($item_id, $reserve_price, $end_date);
         header("Location: index.php");
@@ -59,7 +60,7 @@
       </ul>
 
       <div class="form-wrapper">
-        <form class='form-horizontal' method="post">
+        <form class='form-horizontal' method="post" enctype="multipart/form-data">
             <h3>New Listing</h3>
             <div class='form-group'>
               <!--Title-->
@@ -97,7 +98,7 @@
               <div class='form-group'>
                 <label class='col-md-1 control-label'>Image</label>
                 <div class='col-md-5'>
-                TBD: Very Complicated...
+                <input type="file" name="userImage" id="userImage">
                 </div>
               </div>
 

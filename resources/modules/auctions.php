@@ -15,7 +15,7 @@
     }
 
     function get_all_auctions_seller($uid) {
-        return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.owner_id='$uid'");
+        return db_fetch_all("SELECT * FROM Auction WHERE seller_id='$uid'");
     }
 
     function get_auctions_category($category) {
