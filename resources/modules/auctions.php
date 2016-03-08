@@ -1,6 +1,6 @@
 <?php
     require_once("database_connection.php");
-    
+
     function get_auctions_id($id) {
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id'");
     }
@@ -20,6 +20,13 @@
 
     function get_auctions_category($category) {
         return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item AS i ON a.item_id = i.id INNER JOIN Item_Category AS c ON c.item_id = b.id WHERE a.end_date > now() AND c.category_id = '$category'");
+    }
+
+    function get_auctions_searchTermOnly($term){
+        return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND (Name LIKE '$term' ");
+    }
+    function get_auctions_searchTerm_category($category, $term){
+        return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND Category LIKE '$category' AND Name LIKE '$term' ");
     }
 
     function get_auctions_buyer($uid) {
