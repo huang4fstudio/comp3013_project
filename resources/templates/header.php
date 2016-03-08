@@ -16,18 +16,18 @@
       <li>
         <form class="navbar-form navbar-left" role="search">
         <div class="input-group">
-          <div class="input-group-addon">
-              <select id="searchCategory">
-                <option>All</option>
-                <option>Electronics</option>
-                <option>Sporting Goods</option>
-                <option>Fashion</option>
-                <option>Health & Beauty</option>
-                <option>Home & Garden</option>
-                <option>Collectibles & Art</option>
-                <option>Toys</option>
-              </select>
-          </div>
+          <select class="form-control" id="searchCategory">
+            <option>All</option>
+            <option>Electronics</option>
+            <option>Sporting Goods</option>
+            <option>Fashion</option>
+            <option>Health & Beauty</option>
+            <option>Home & Garden</option>
+            <option>Collectibles & Art</option>
+            <option>Toys</option>
+          </select>
+        </div>
+        <div class="input-group">
           <input type="text" class="form-control" name="searchQuery" placeholder="Search"> <!--PHP for search-->
         </div>
         <a href="searchResults.php"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></a>
