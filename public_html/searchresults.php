@@ -1,3 +1,8 @@
+<?php
+   session_start();
+   require_once("../resources/modules/check_login.php");
+   check_login(true);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +22,8 @@
   <body>
 
     <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
       require("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
@@ -30,9 +37,13 @@
       <?php
         require("../resources/modules/auctions.php");
 
-        $searchQuery = mysql_real_escape_string($_REQUEST['searchQuery']);
-        $category = mysql_real_escape_string($_REQUEST['categoryQuery']);
-        
+        $searchQuery = $_REQUEST['searchQuery'];
+        $category = $_REQUEST['categoryQuery'];
+
+        // echo $searchQuery;
+        // echo $category;
+        echo("<h4>Search results for '$searchQuery'</h4>");
+
         if($category == 'All'){
           $results = get_auctions_searchTermOnly($searchQuery);
         }
@@ -43,10 +54,10 @@
         require("../resources/modules/auctions_thumbnail.php");
 
         if ($results != NULL){
-          item_html($results);
+          echo item_html($results);
         }
         else{
-          echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>")
+          echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>");
         }
        ?>
 
