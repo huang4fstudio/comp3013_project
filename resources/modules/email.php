@@ -73,15 +73,16 @@
          }
          }
 
-         function send_update_on_watch_list($auction){
+         function send_update_on_watch_list($auction, $id){
 
          $item_id = $auction["item_id"];
          $results = get_watching_users_item($item_id);
          foreach ($results as $row) {
+            if(row["user_id"]!=$id){
             $watcher = find_email($row["user_id"]);
 
             $to = $watcher["email"];
-            $subject = "Some updates on your items";
+            $subject = "Some updates on your watchlist";
          
          $message = "<b>Someone's recently viewed your items..</b>";
          $message .= "<h1>".$item["name"]."</h1>";
@@ -108,6 +109,7 @@
             echo "Message could not be sent...";
          }
       }
+   }
 
          
       }
