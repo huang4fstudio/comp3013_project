@@ -21,4 +21,10 @@
         return $row['count'];
     }
 
+     function get_bids_auction($auction_id) {
+        
+         return db_fetch_all("SELECT * FROM Bid WHERE auction_id ='$auction_id'");
+    }
+
+
 ?>
