@@ -19,21 +19,13 @@
          $message .= "<h1>".$item["name"]."</h1>";
 
          $highest = get_highest_bid($auction["id"]);
-         $results = get_bids_auction($auction["id"]);
-
+         
          $message .= "<b>Your new bid</b>";
          $message .= "<b>User :".$highest["user_id"]."</b>";
          $message .= "<b>Price :".$highest["price"]."</b>";
          $message .= "<b>Time : ".$highest["time"]."</b>";
 
-         $message .= "<b>Other bids...</b>";
-         foreach ($results as $row)
-         {
-            $message .= "User :".$row["user_id"];
-            $message .= "Price :".$row["price"];
-            $message .= "Time : ".$row["time"];
-
-         }
+         
          echo $message;
          
          $header = "From:no@gmail.com \r\n";
@@ -82,24 +74,42 @@
          }
 
          function send_update_on_watch_list($auction){
-         $to = $email;
-         $subject = "Auctions";
+
+         $item_id = $auction["item_id"];
+         $results = get_watching_users_item($item_id);
+         foreach ($results as $row) {
+            $watcher = find_email($row["user_id"]);
+
+            $to = $watcher["email"];
+            $subject = "Some updates on your items";
          
-         $message = "<b>We have some updates on the watch list!!!</b>";
-         $message .= "<h1></h1>";
+         $message = "<b>Someone's recently viewed your items..</b>";
+         $message .= "<h1>".$item["name"]."</h1>";
+
+         $highest = get_highest_bid($auction["id"]);
          
-         $header = "From:no-response@auction.com \r\n";
+         $message .= "<b>A new bid was made</b>";
+         $message .= "<b>User :".$highest["user_id"]."</b>";
+         $message .= "<b>Price :".$highest["price"]."</b>";
+         $message .= "<b>Time : ".$highest["time"]."</b>";
+
+         
+         
+            $header = "From:no-response@auction.com \r\n";
         
-         $header .= "MIME-Version: 1.0\r\n";
-         $header .= "Content-type: text/html\r\n";
+            $header .= "MIME-Version: 1.0\r\n";
+            $header .= "Content-type: text/html\r\n";
+         echo $message;
+            $retval = mail ($to,$subject,$message,$header);
          
-         $retval = mail ($to,$subject,$message,$header);
-         
-         if( $retval == true ) {
+            if( $retval == true ) {
             echo "Message sent successfully...";
-         }else {
+            }else {
             echo "Message could not be sent...";
          }
+      }
+
+         
       }
       ?>
 
