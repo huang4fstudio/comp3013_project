@@ -14,23 +14,23 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" role="search" action="searchresults.php">
         <div class="input-group">
-          <select class="form-control" id="searchCategory">
-            <option>All</option>
-            <option>Electronics</option>
-            <option>Sporting Goods</option>
-            <option>Fashion</option>
-            <option>Health & Beauty</option>
-            <option>Home & Garden</option>
-            <option>Collectibles & Art</option>
-            <option>Toys</option>
+          <select class="form-control" name="categoryQuery">
+            <option value="All">All</option>
+            <option value="1">Electronics</option>
+            <option value="2">Sporting Goods</option>
+            <option value="3">Fashion</option>
+            <option value="4">Health & Beauty</option>
+            <option value="5">Home & Garden</option>
+            <option value="6">Collectibles & Art</option>
+            <option value="7">Toys</option>
           </select>
         </div>
         <div class="input-group">
           <input type="text" class="form-control" name="searchQuery" placeholder="Search"> <!--PHP for search-->
         </div>
-        <a href="searchResults.php"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></a>
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
       </li>
         <?php
@@ -41,11 +41,10 @@
           echo "<li class='navbar-text'>Hello Guest!</li> <li><a href='login.php'>Login</a><li> <li><a href='register.php'>Register</a><li>";
         }
         else{
-          echo "<li>Hello ".$username."</li>";
+          echo "<li class='navbar-text'>Hello ".$username."!</li>";
         }
         ?>
       <li><a href="newlisting.php">Sell</a></li>
-      <li><a href="cart.php">Cart</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your EBid<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
@@ -56,8 +55,6 @@
           <li><a href="selling.php">Selling</a></li>
           <li class="divider"></li>
           <li><a href="watchlist.php">Watchlist</a></li>
-          <li class="divider"></li>
-          <li><a href="settings.php">Settings</a></li>
         </ul>
       </li>
     </ul>
