@@ -1,7 +1,7 @@
 <?php
    session_start();
-  //  require_once("../resources/modules/check_login.php");
-  //  check_login(true);
+   require_once("../resources/modules/check_login.php");
+   check_login(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,7 @@
           <div class="item active">
             <p class="carousel-caption">
                 Selling is as easy as <br> 1, 2, 3! <br>
-                <a href="sell.php">Get Started!</a>
+                <a href="newlisting.php">Get Started!</a>
             </p>
             <img src="img/seller.jpg" alt="Seller">
           </div>
