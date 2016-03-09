@@ -21,7 +21,7 @@
          $highest = get_highest_bid($auction["id"]);
          $results = get_bids_auction($auction["id"]);
 
-         $message .= "<b>Your highest bid</b>";
+         $message .= "<b>Your new bid</b>";
          $message .= "<b>User :".$highest["user_id"]."</b>";
          $message .= "<b>Price :".$highest["price"]."</b>";
          $message .= "<b>Time : ".$highest["time"]."</b>";

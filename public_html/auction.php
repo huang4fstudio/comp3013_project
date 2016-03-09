@@ -31,6 +31,7 @@
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
+            send_update_on_auctions($auction);
         }
     }
 
