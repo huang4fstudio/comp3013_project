@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     require_once("../resources/modules/check_login.php");
     check_login(false);
@@ -27,33 +28,41 @@
     <!--Wrapper for page content-->
     <div class="wrapper">
       <div class='jumbotron'>
+        <div class="form-wrapper">
         <form class='form-horizontal' method="post">
-          <fieldset>
+          <!-- <fieldset> -->
             <h3>Thanks for joining!</h3>
             <div class='form-group'>
               <label class='col-md-1 control-label'>Username</label>
               <div class='col-md-3'>
                 <input type='text' class='form-control' name="inputName" placeholder='Username' required>
               </div>
+            </div>
 
+            <div class='form-group'>
               <label class='col-md-1 control-label'>Email</label>
               <div class='col-md-3'>
                 <input type='email' class='form-control' name="inputEmail" placeholder='Email' required>
               </div>
+            </div>
 
+            <div class='form-group'>
               <label class='col-md-1 control-label'>New Password</label>
               <div class='col-md-3'>
                 <input type='password' class='form-control' name="inputPass" placeholder='Enter new password' required>
               </div>
+            </div>
 
+            <div class='form-group'>
               <label class='col-md-1 control-label'>Confirm Password</label>
               <div class='col-md-3'>
                 <input type='password' class='form-control' placeholder='Confirm new password' required>
               </div>
             </div>
             <button type="submit" class='btn btn-primary' name="registerUser">Register</button>
-          </fieldset>
+          <!-- </fieldset> -->
         </form>
+        </div>
       </div>
       <?php
       require_once("../resources/modules/database_connection.php");
