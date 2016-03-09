@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once("../resources/modules/check_login.php");
+    require_once("../resources/modules/watchlists.php");
     check_login(true);
 
     if (!isset($_GET['auction_id'])) {
@@ -26,12 +27,17 @@
     }
     $lowest_price = $lowest_price + 1;
 
+    if (isset($_POST['watchlist'])){
+      add_watchlist($_SESSION['id'], $auction['id']);
+    }
+
     if (isset($_POST['placeBid'])) {
         if ($item['owner_id'] === $_SESSION['id'] || $lowest_price > floatval($_POST['yourBid'])) {
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
             send_update_on_auctions($auction);
+            send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 
@@ -145,6 +151,9 @@
               </div>
               <div class="bid-button">
                   <button type="submit" class='btn btn-info' name="placeBid">Place Bid!</button>
+              </div>
+              <div class="bid-button">
+                  <button type="submit" class='btn btn-info' name="watchlist">Add to Watch List</button>
               </div>
             </div>
           </form>
