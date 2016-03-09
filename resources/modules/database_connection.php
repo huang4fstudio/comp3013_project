@@ -40,7 +40,7 @@
         $password = 'LD6aQ5BNSrPuUPpG';
         $db = 'Auction_database';
         $host = 'localhost';
-        $port = 8888;
+        $port = 8889;
         // Define connection as a static variable, to avoid connecting more than once
         static $connection;
 
