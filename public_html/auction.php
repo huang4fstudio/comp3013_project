@@ -11,8 +11,8 @@
     require_once("../resources/modules/auctions.php");
     require_once("../resources/modules/items.php");
     require_once("../resources/modules/bids.php");
-    
-    
+
+
     $auction = get_auctions_id($_GET['auction_id']);
     if (!$auction) {
         header("location:index.php");
@@ -80,7 +80,7 @@
             </div>
 
             <div class="item">
-              <img src="img/placeholder.png"class="auction-item-img" data-imagezoom="true">
+              <img src="img/placeholder.png" class="auction-item-img" data-imagezoom="true">
             </div>
 
             <div class="item">
@@ -128,7 +128,7 @@
             </p>
           </div>
         </div>
-        <?php if ($item['owner_id'] !== $_SESSION['id']) { ?> 
+        <?php if ($item['owner_id'] !== $_SESSION['id']) { ?>
         <!--Bidding Section-->
         <div class="item-bid">
           <form class='form-horizontal' method="post">
@@ -163,7 +163,7 @@
             <?php
             //For now, it's just repeating a template file
               for ($i = 0; $i < 4; $i++) {
-                
+
                // include("../resources/modules/auctions_thumbnail.php");
               }
             ?>
