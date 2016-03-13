@@ -2,7 +2,7 @@
     session_start();
     require_once("../resources/modules/check_login.php");
     check_login(true);
-    
+
     require_once("../resources/modules/auctions.php");
     require_once("../resources/modules/items.php");
     if(isset($_POST['newlisting'])) {
@@ -11,7 +11,7 @@
         $reserve_price = $_POST['reservePrice'];
         $category_id = $_POST['category'];
         $end_date = strtotime($_POST['endDate']);
-        
+
         $image = NULL;
         $imageProperties = NULL;
         if(count($_FILES) > 0) {
