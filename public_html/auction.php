@@ -48,8 +48,8 @@
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
-            send_update_on_auctions($auction);
-            send_update_on_watch_list($auction, $_SESSION['id']);
+           // send_update_on_auctions($auction);
+            //send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 
@@ -147,7 +147,7 @@
             </p>
           </div>
         </div>
-        <?php if ($item['owner_id'] === $_SESSION['id']) { ?>
+        <?php if ($auction['seller_id'] === $_SESSION['id']) { ?>
         <span> This is your Auction, you can't bid! </span>
         <?php } else if (!get_auctions_id_current($auction["id"])) { ?>
         <span> Auction has ended, you can't bid anymore! </span>
@@ -181,24 +181,18 @@
       </div><!--End of auction details-->
     </div><!--End of row-->
 
-      <!--Related Items-->
+      <!--Related Items
       <div class="row">
         <h4>You may also be interested in</h4>
         <br>
         <div class="panel panel-default">
           <div class="panel-body" class="item-thumbnails">
-            <?php
-            //For now, it's just repeating a template file
-              for ($i = 0; $i < 4; $i++) {
-
-               // include("../resources/modules/auctions_thumbnail.php");
-              }
-            ?>
           </div>
         </div>
       </div>
+      
 
-
+-->
     </div>
     <?php
       require_once("../resources/templates/footer.php");
