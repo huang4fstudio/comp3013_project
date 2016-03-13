@@ -6,7 +6,7 @@
         $item = get_item_id($row['item_id']);
     ?>
 <div class="item-thumbnail">
-  <img src="img/placeholder.png" class="thumbnail">
+  <img src="img/image_view.php?item_id=<?= $row['item_id'] ?>" class="thumbnail">
   <span>
     <a href="auction.php?auction_id=<?= $row['id'] ?>"> <?= $item['description'] ?> </a> 
       <br>
