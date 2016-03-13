@@ -77,12 +77,15 @@
         </a>
       </div><!--End of carousel-->
 
-      <h4>Featured Auctions</h4>
+      <h4>Recommended Auctions Based on Your Bids</h4>
       <div>
         <?php
             require_once("../resources/modules/auctions.php");
             require_once("../resources/modules/auctions_thumbnail.php");
-            $results = get_all_auctions();
+            $results = get_recommended_auctions($_SESSION["id"]);
+            if (!$results) {
+                $results = get_all_auctions();
+            }
             echo item_html($results);
         ?>
       </div>

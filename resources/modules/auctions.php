@@ -5,6 +5,11 @@
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id'");
     }
 
+     function get_auctions_id_current($id) {
+        return db_fetch_array("SELECT * FROM Auction WHERE id='$id' AND end_date > now()");
+    }
+
+
     function get_all_auctions() {
         return db_fetch_all("SELECT * FROM Auction WHERE end_date > now()");
     }
@@ -21,6 +26,7 @@
       $q_string = $term . '%';
       return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string'");
     }
+
     function get_auctions_searchTerm_category($category, $term){
         return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND Category LIKE '$category' AND Name LIKE '$term' ");
     }
@@ -36,7 +42,7 @@
     function get_recommended_auctions($uid) {
         $auction_ids = "(SELECT auction_id FROM Bid WHERE user_id='$uid')";
         $user_ids = "(SELECT user_id FROM Bid WHERE auction_id=" . $auction_ids .")";
-        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id WHERE a.end_date > now() AND b.user_id=". $users_ids;
+        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id WHERE a.end_date > now() AND b.user_id=". $user_ids;
         return db_fetch_all($final_auctions);
     }
 

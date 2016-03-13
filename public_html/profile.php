@@ -1,7 +1,22 @@
 <?php   
     session_start();
-    require_once("../resources/module/check_login.php");
+    require_once("../resources/modules/check_login.php");
     check_login(true);
+
+    if (!isset($_GET['user_id'])) {
+        header("location:index.php");
+        die();
+    }
+    require_once("../resources/modules/users.php");
+    $user = find_user_id($_GET['user_id']);
+    if (!$user) {
+        header("location: index.php");
+        die();
+    }
+    $seller_rating = "This user has not sold anything yet.";
+    if ($user["seller_rating"]) {
+        $seller_rating = $user["seller_rating"];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +35,14 @@
 
   </head>
   <body>
-
+    
     <?php
       require_once("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-
+    <h4>User: <?= $user["name"] ?></h4>
+    <span> Rating: <?= $seller_rating ?> </span>
     <!--End of wrapper for page content, beginning tag in header.php-->
     </div>
     <?php

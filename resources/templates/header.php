@@ -18,13 +18,12 @@
         <div class="input-group">
           <select class="form-control" name="categoryQuery">
             <option value="All">All</option>
-            <option value="1">Electronics</option>
-            <option value="2">Sporting Goods</option>
-            <option value="3">Fashion</option>
-            <option value="4">Health & Beauty</option>
-            <option value="5">Home & Garden</option>
-            <option value="6">Collectibles & Art</option>
-            <option value="7">Toys</option>
+            <?php
+              require_once("../resources/modules/categories.php");
+              $results = get_all_categories();
+              foreach ($results as $category) { ?>
+            <option value="<?= $category ["id"] ?>"><?= $category["name"] ?></option>
+            <?php } ?>
           </select>
         </div>
         <div class="input-group">
@@ -48,7 +47,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your EBid<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a href="profile.php">Profile</a></li>
+          <li><a href="profile.php?user_id=<?= $_SESSION["id"] ?>">Profile</a></li>
           <li class="divider"></li>
           <li><a href="buying.php">Buying</a></li>
           <li class="divider"></li>

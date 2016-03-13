@@ -4002,7 +4002,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   vertical-align: middle;
 }
 .input-group-addon {
-  float: left;
   padding: 10px 15px;
   font-size: 15px;
   font-weight: normal;

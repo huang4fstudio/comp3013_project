@@ -12,6 +12,7 @@
     require_once("../resources/modules/auctions.php");
     require_once("../resources/modules/items.php");
     require_once("../resources/modules/bids.php");
+    require_once("../resources/modules/users.php");
 
 
     $auction = get_auctions_id($_GET['auction_id']);
@@ -21,9 +22,20 @@
     }
     $highest_bid = get_highest_bid($auction['id']);
     $item = get_item_id($auction['item_id']);
+    $seller = find_user_id($auction['seller_id']);
+    $seller_rating = "No Seller Rating";
+    
+    if ($seller['seller_rating']) {
+        $seller_rating = $seller['seller_rating'];
+    }
+
     $lowest_price = $auction['reserve_price'];
+    $highest_bid_username = "N/A";
+    $highest_bid_price = "No Bids Yet";
     if ($highest_bid) {
         $lowest_price = $highest_bid['price'];
+        $highest_bid_username = find_user_id($highest_bid['user_id'])["name"];
+        $highest_bid_price = $lowest_price;
     }
     $lowest_price = $lowest_price + 1;
 
@@ -36,8 +48,8 @@
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
-            send_update_on_auctions($auction);
-            send_update_on_watch_list($auction, $_SESSION['id']);
+           // send_update_on_auctions($auction);
+            //send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 
@@ -120,10 +132,10 @@
 
           <div class="panel-body">
             <div class="seller-info">
-              <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
-              <span class="selling-info">Rating: <span name="seller-rating"></span>0%</span><!--PHP NEEDED: seller rating-->
+              <span class="selling-info">Seller: <a href="profile.php?user_id=<?= $seller["id"] ?>">Seller link</a></span><!--PHP NEEDED: seller profile link-->
+              <span class="selling-info">Rating: <span name="seller-rating"></span><?= $seller_rating ?></span><!--PHP NEEDED: seller rating-->
               <span class="selling-info">Bids: </span><span name="numBids"><?= $bids_count ?></span><!--PHP NEEDED: number of bids-->
-
+              <span class="selling-info">Highest Bid User: </span><span name="highestBid"><?= $highest_bid_username ?></span>
               <br>
               <!--PHP NEEDED: end date-->
               <!--JS or PHP NEEDED: Countdown from current time until end date-->
@@ -135,12 +147,18 @@
             </p>
           </div>
         </div>
-        <?php if ($item['owner_id'] !== $_SESSION['id']) { ?>
+        <?php if ($auction['seller_id'] === $_SESSION['id']) { ?>
+        <span> This is your Auction, you can't bid! </span>
+        <?php } else if (!get_auctions_id_current($auction["id"])) { ?>
+        <span> Auction has ended, you can't bid anymore! </span>
+        <?php } else { ?>
         <!--Bidding Section-->
         <div class="item-bid">
           <form class='form-horizontal' method="post">
             <div class="col-sm-4">
-              Starting Bid: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
+              Reserve Price: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
+            <span class="selling-info">Highest Bid Price: £</span><span name="numBids"><?= $highest_bid_price ?></span><!--PHP NEEDED: number of bids-->
+              
             </div>
             <div class="bid-input">
               <div class="col-sm-4">
@@ -158,30 +176,23 @@
             </div>
           </form>
         </div>
-        <?php } else { ?>
-        <span> This is your Auction, your can't bid! </span>
+
         <?php } ?>
       </div><!--End of auction details-->
     </div><!--End of row-->
 
-      <!--Related Items-->
+      <!--Related Items
       <div class="row">
         <h4>You may also be interested in</h4>
         <br>
         <div class="panel panel-default">
           <div class="panel-body" class="item-thumbnails">
-            <?php
-            //For now, it's just repeating a template file
-              for ($i = 0; $i < 4; $i++) {
-
-               // include("../resources/modules/auctions_thumbnail.php");
-              }
-            ?>
           </div>
         </div>
       </div>
+      
 
-
+-->
     </div>
     <?php
       require_once("../resources/templates/footer.php");
