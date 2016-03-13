@@ -41,7 +41,7 @@
     function get_recommended_auctions($uid) {
         $auction_ids = "(SELECT auction_id FROM Bid WHERE user_id='$uid')";
         $user_ids = "(SELECT user_id FROM Bid WHERE auction_id=" . $auction_ids .")";
-        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id WHERE a.end_date > now() AND b.user_id=". $users_ids;
+        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id WHERE a.end_date > now() AND b.user_id=". $user_ids;
         return db_fetch_all($final_auctions);
     }
 
