@@ -36,8 +36,8 @@
     }
 
     function db_connect() {
-        $user = 'mbritt';
-        $password = 'LD6aQ5BNSrPuUPpG';
+        $user = 'root';
+        $password = 'root';
         $db = 'Auction_database';
         $host = 'localhost';
         $port = 8889;
