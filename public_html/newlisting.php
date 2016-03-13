@@ -76,13 +76,13 @@
               <div class='col-md-3'>
                 <select class="form-control" id="select" name="category" required>
                   <option selected disabled>Choose category</option>
-                  <option value="1">Electronics</option>
-                  <option value="2">Sporting Goods</option>
-                  <option value="3">Fashion</option>
-                  <option value="4">Health & Beauty</option>
-                  <option value="5">Home & Garden</option>
-                  <option value="6">Collectibles & Art</option>
-                  <option value="7">Toys</option>
+                  <?php
+                    require_once("../resources/modules/categories.php");
+                    $results = get_all_categories();
+                    foreach ($results as $category) {
+                    ?>
+                  <option value="<?= $category["id"] ?>"><?= $category["name"] ?></option>
+                  <?php } ?>
                 </select>
               </div>
             </div>
