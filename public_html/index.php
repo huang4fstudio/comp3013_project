@@ -77,7 +77,7 @@
         </a>
       </div><!--End of carousel-->
 
-      <h4>Featured Auctions</h4>
+      <h4>Recommended Auctions Based on Your Bids</h4>
       <div>
         <?php
             require_once("../resources/modules/auctions.php");
