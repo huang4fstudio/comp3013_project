@@ -21,6 +21,9 @@
   </head>
   <body>
     <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
       require_once("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
@@ -78,7 +81,7 @@
       </div><!--End of carousel-->
 
       <h4>Recommended Auctions Based on Your Bids</h4>
-      <div>
+      <div class="item-thumbnails">
         <?php
             require_once("../resources/modules/auctions.php");
             require_once("../resources/modules/auctions_thumbnail.php");
