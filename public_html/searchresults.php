@@ -18,6 +18,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js"></script>
+    <script src="js/ebid.js"></script>
+
   </head>
   <body>
 
@@ -36,32 +39,42 @@
 
       <?php
         require("../resources/modules/auctions.php");
-
-        $searchQuery = $_REQUEST['searchQuery'];
         $category = $_REQUEST['categoryQuery'];
+        $searchQuery = $_REQUEST['searchQuery'];
 
-        // echo $searchQuery;
-        // echo $category;
-        echo("<h4>Search results for '$searchQuery'</h4>");
 
         if($category == 'All'){
           $results = get_auctions_searchTermOnly($searchQuery);
+          echo("<h4>Search results for '$searchQuery' in All Categories</h4>");
         }
         else{
           $results = get_auctions_searchTerm_category($category, $searchQuery);
+          echo("<h4>Search results for '$searchQuery' in '$category'</h4>");
         }
+        ?>
 
-        require("../resources/modules/auctions_thumbnail.php");
+        <h4 id="sortButton">Sort</h4>
+        <div class="input-group" id="sortDropdown">
+              <select id="sortQuery" class="form-control">
+                <option disabled selected>-</option>
+                <option value="priceHiLo">Price High-Low</option>
+                <option value="priceLoHi">Price Low-High</option>
+              </select>
+        </div>
 
-        if ($results != NULL){
-          echo item_html($results);
-        }
-        else{
-          echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>");
-        }
-       ?>
+        <div id="searchResults">
+          <?php
+            require("../resources/modules/auctions_thumbnail.php");
 
-    </div>
+            if ($results != NULL){
+              echo item_html($results);
+            }
+            else{
+              echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>");
+            }
+           ?>
+        </div>
+      </div>
     <?php
       require_once("../resources/templates/footer.php");
     ?>
