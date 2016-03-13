@@ -12,6 +12,7 @@
     require_once("../resources/modules/auctions.php");
     require_once("../resources/modules/items.php");
     require_once("../resources/modules/bids.php");
+    require_once("../resources/modules/users.php");
 
 
     $auction = get_auctions_id($_GET['auction_id']);
@@ -33,7 +34,6 @@
     $highest_bid_price = "No Bids Yet";
     if ($highest_bid) {
         $lowest_price = $highest_bid['price'];
-        require_once("../resources/modules/user.php");
         $highest_bid_username = find_user_id($highest_bid['user_id'])["name"];
         $highest_bid_price = $lowest_price;
     }
@@ -132,10 +132,9 @@
 
           <div class="panel-body">
             <div class="seller-info">
-              <span class="selling-info">Seller: <a href="#">Seller link</a></span><!--PHP NEEDED: seller profile link-->
+              <span class="selling-info">Seller: <a href="profile.php?user_id=<?= $seller["id"] ?>">Seller link</a></span><!--PHP NEEDED: seller profile link-->
               <span class="selling-info">Rating: <span name="seller-rating"></span><?= $seller_rating ?></span><!--PHP NEEDED: seller rating-->
               <span class="selling-info">Bids: </span><span name="numBids"><?= $bids_count ?></span><!--PHP NEEDED: number of bids-->
-              <span class="selling-info">Highest Bid Price: </span><span name="numBids"><?= $highest_bid_price ?></span><!--PHP NEEDED: number of bids-->
               <span class="selling-info">Highest Bid User: </span><span name="highestBid"><?= $highest_bid_username ?></span>
               <br>
               <!--PHP NEEDED: end date-->
@@ -148,7 +147,7 @@
             </p>
           </div>
         </div>
-        <?php if ($item['owner_id'] !== $_SESSION['id']) { ?>
+        <?php if ($item['owner_id'] === $_SESSION['id']) { ?>
         <span> This is your Auction, you can't bid! </span>
         <?php } else if (!get_auctions_id_current($auction["id"])) { ?>
         <span> Auction has ended, you can't bid anymore! </span>
@@ -157,7 +156,9 @@
         <div class="item-bid">
           <form class='form-horizontal' method="post">
             <div class="col-sm-4">
-              Starting Bid: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
+              Reserve Price: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
+            <span class="selling-info">Highest Bid Price: £</span><span name="numBids"><?= $highest_bid_price ?></span><!--PHP NEEDED: number of bids-->
+              
             </div>
             <div class="bid-input">
               <div class="col-sm-4">

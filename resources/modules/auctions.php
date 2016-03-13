@@ -26,6 +26,7 @@
       $q_string = $term . '%';
       return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string'");
     }
+
     function get_auctions_searchTerm_category($category, $term){
         return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND Category LIKE '$category' AND Name LIKE '$term' ");
     }
