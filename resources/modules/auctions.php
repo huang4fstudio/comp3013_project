@@ -5,6 +5,11 @@
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id'");
     }
 
+     function get_auctions_id_current($id) {
+        return db_fetch_array("SELECT * FROM Auction WHERE id='$id' AND end_date > now()");
+    }
+
+
     function get_all_auctions() {
         return db_fetch_all("SELECT * FROM Auction WHERE end_date > now()");
     }

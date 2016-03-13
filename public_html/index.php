@@ -82,7 +82,10 @@
         <?php
             require_once("../resources/modules/auctions.php");
             require_once("../resources/modules/auctions_thumbnail.php");
-            $results = get_all_auctions();
+            $results = get_recommended_auctions($_SESSION["id"]);
+            if (!$results) {
+                $results = get_all_auctions();
+            }
             echo item_html($results);
         ?>
       </div>
