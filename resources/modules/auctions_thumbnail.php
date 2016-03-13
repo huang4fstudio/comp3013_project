@@ -2,7 +2,7 @@
     require_once("items.php");
     function item_html($results) {
         ob_start();
-        foreach ($results as $row) { 
+        foreach ($results as $row) {
         $item = get_item_id($row['item_id']);
     ?>
 <div class="item-thumbnail">
@@ -12,9 +12,9 @@
   <img src="img/placeholder.png" class="thumbnail">
     <?php } ?>
   <span>
-    <a href="auction.php?auction_id=<?= $row['id'] ?>"> <?= $item['description'] ?> </a> 
-      <br>
-      <strong name="itemPrice">£<?= $row['reserve_price'] ?></strong>
+    <a href="auction.php?auction_id=<?= $row['id'] ?>"> <?= $item['name'] ?> </a>
+    <br>
+    <strong class="itemPrice" name="itemPrice">£<?= $row['reserve_price'] ?></strong>
   </span>
 </div>
 <?php }
