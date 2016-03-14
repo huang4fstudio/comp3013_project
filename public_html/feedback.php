@@ -9,8 +9,9 @@
     require_once("../resources/modules/auctions.php");
     $auction = get_auctions_id($_GET['auction_id']);
      
-    if (get_feedback($auction['id']) || !check_auction_feedback($auction_id, $_SESSION['id']) {
+    if (get_feedback($auction['id']) || !check_auction_feedback($auction_id, $_SESSION['id'])) {
         header("Location: index.php");
+        die();
     }
     if (isset($_POST['submitFeedback'])) {
         require_once("../resources/modules/feedbacks.php");

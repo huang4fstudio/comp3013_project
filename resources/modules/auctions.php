@@ -14,8 +14,12 @@
         return db_fetch_all("SELECT * FROM Auction WHERE end_date > now()");
     }
 
-    function get_all_auctions_seller($uid) {
-        return db_fetch_all("SELECT * FROM Auction WHERE seller_id='$uid'");
+    function get_auctions_selling($uid) {
+        return db_fetch_all("SELECT * FROM Auction WHERE seller_id='$uid' AND end_date > now()");
+    }
+
+    function get_auctions_sold($uid) {
+        return db_fetch_all("SELECT * FROM Auction WHERE seller_id='$uid' AND end_date <= now()");
     }
 
     function get_auctions_category($category) {
@@ -39,7 +43,7 @@
     function get_auctions_buyer_won($uid) {
         $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
         $highest_bids = "(SELECT user_id, auction_id FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
-        $final_query = "SELECT * FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid'";
+        $final_query = "SELECT * FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now()";
         return db_fetch_all($final_query);
     }
 
@@ -49,8 +53,8 @@
 
     function get_recommended_auctions($uid) {
         $auction_ids = "(SELECT auction_id FROM Bid WHERE user_id='$uid')";
-        $user_ids = "(SELECT user_id FROM Bid WHERE auction_id=" . $auction_ids .")";
-        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id WHERE a.end_date > now() AND b.user_id=". $user_ids;
+        $user_ids = "(SELECT user_id FROM Bid AS others INNER JOIN" . $auction_ids ."AS au on au.id=others.id)";
+        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN Bid As b ON a.id = b.auction_id INNER JOIN " . $user_ids . " AS u ON u.user_id=b.user_id WHERE a.end_date > now()";
         return db_fetch_all($final_auctions);
     }
 

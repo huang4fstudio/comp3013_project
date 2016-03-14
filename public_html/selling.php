@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    require_once("../resources/modules/check_login.php");
+    check_login(true);
+    require_once("../resources/modules/auctions.php");
+    require_once("../resources/modules/auctions_thumbnail.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +39,12 @@
           <h3 class="panel-title">Currently Selling</h3>
         </div>
         <div class="panel-body" class="sell-item">
+        <?php $auctions_selling = get_auctions_selling($_SESSION["id"]);
+            if ($auctions_selling) { 
+                echo item_html($auctions_selling);
+            } else { ?>
           You currently aren't selling anything. Click " 'Sell' to get started!"
+          <?php } ?>
         </div>
       </div>
 
@@ -41,7 +53,12 @@
           <h3 class="panel-title">Sold</h3>
         </div>
         <div class="panel-body" class="sell-item">
+         <?php $auctions_sold = get_auctions_sold($_SESSION["id"]);
+            if ($auctions_sold) { 
+                echo item_html($auctions_sold);
+            } else { ?>
           You have no sold items.
+          <?php } ?>
         </div>
       </div>
 
