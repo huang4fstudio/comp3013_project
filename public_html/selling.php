@@ -40,7 +40,7 @@
         </div>
         <div class="panel-body" class="sell-item">
         <?php $auctions_selling = get_auctions_selling($_SESSION["id"]);
-            if ($auctions_selling) { 
+            if ($auctions_selling) {
                 echo item_html($auctions_selling);
             } else { ?>
           You currently aren't selling anything. Click " 'Sell' to get started!"
@@ -54,7 +54,7 @@
         </div>
         <div class="panel-body" class="sell-item">
          <?php $auctions_sold = get_auctions_sold($_SESSION["id"]);
-            if ($auctions_sold) { 
+            if ($auctions_sold) {
                 echo item_html($auctions_sold);
             } else { ?>
           You have no sold items.
