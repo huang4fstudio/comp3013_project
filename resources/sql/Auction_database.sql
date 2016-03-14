@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2016 at 12:08 PM
+-- Generation Time: Mar 14, 2016 at 01:19 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -86,6 +86,18 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `description` varchar(255) NOT NULL,
   `image` mediumblob NOT NULL,
   `image_type` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Item_category`
+--
+
+CREATE TABLE IF NOT EXISTS `Item_category` (
+  `id` int(111) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -179,6 +191,14 @@ ALTER TABLE `Item`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `Item_category`
+--
+ALTER TABLE `Item_category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
 -- Indexes for table `Roles`
 --
 ALTER TABLE `Roles`
@@ -236,6 +256,11 @@ ALTER TABLE `Feedback`
 ALTER TABLE `Item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `Item_category`
+--
+ALTER TABLE `Item_category`
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `Roles`
 --
 ALTER TABLE `Roles`
@@ -275,6 +300,13 @@ ALTER TABLE `Feedback`
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
   ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`buyer_id`) REFERENCES `User` (`id`),
   ADD CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
+
+--
+-- Constraints for table `Item_category`
+--
+ALTER TABLE `Item_category`
+  ADD CONSTRAINT `item_category_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `Item` (`id`),
+  ADD CONSTRAINT `item_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `Category` (`id`);
 
 --
 -- Constraints for table `Roles`
