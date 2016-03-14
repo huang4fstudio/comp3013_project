@@ -13,22 +13,23 @@
          $seller = find_email($item["owner_id"]);
 
          $to = $seller["email"];
-         $subject = "Some updates on your items";
+         $subject = "Some updates on your auctions";
          
-         $message = "<b>Someone's recently viewed your items..</b>";
-         $message .= "<h1>".$item["name"]."</h1>";
+         $message = "<b>Someone's recently bid on your items..</b><br>";
+         $message .= "<h1>".$item["name"]."</h1><br>";
 
          $highest = get_highest_bid($auction["id"]);
          
-         $message .= "<b>Your new bid</b>";
-         $message .= "<b>User :".$highest["user_id"]."</b>";
-         $message .= "<b>Price :".$highest["price"]."</b>";
-         $message .= "<b>Time : ".$highest["time"]."</b>";
+         $message .= "<b>Your new bid</b><br>";
+         $message .= "<b>Item:".$item["name"]."</b><br>";
+         $message .= "<b>User :".$highest["user_id"]."</b><br>";
+         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Time : ".$highest["time"]."</b><br>";
 
          
          echo $message;
          
-         $header = "From:no@gmail.com \r\n";
+         $header = "From:no-reply-auctions@gmail.com \r\n";
         
          $header .= "MIME-Version: 1.0\r\n";
          $header .= "Content-type: text/html\r\n";
@@ -54,11 +55,11 @@
          $subject = "We have some updates on your items";
          
          $message = "<b>Someone's recently viewed your items..</b>";
-         $message .= "<h1>".$item["name"]."</h1>";
+         $message .= "<h1>".$item["name"]."</h1><br>";
 
-         $message .="<h2>You have ".$auction["views"]."</h2>";
+         $message .="<h2>You have ".$auction["views"]."</h2><br>";
          
-         $header = "From:no@gmail.com \r\n";
+         $header = "From:no-reply-auctions@gmail.com \r\n";
         
          $header .= "MIME-Version: 1.0\r\n";
          $header .= "Content-type: text/html\r\n";
@@ -84,15 +85,15 @@
             $to = $watcher["email"];
             $subject = "Some updates on your watchlist";
          
-         $message = "<b>Someone's recently viewed your items..</b>";
-         $message .= "<h1>".$item["name"]."</h1>";
+         $message = "<b>Someone's recently viewed your items..</b><br>";
+         $message .= "<h1>".$item["name"]."</h1><br>";
 
          $highest = get_highest_bid($auction["id"]);
          
-         $message .= "<b>A new bid was made</b>";
-         $message .= "<b>User :".$highest["user_id"]."</b>";
-         $message .= "<b>Price :".$highest["price"]."</b>";
-         $message .= "<b>Time : ".$highest["time"]."</b>";
+         $message .= "<b>A new bid was made</b><br>";
+         $message .= "<b>User :".$highest["user_id"]."</b><br>";
+         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Time : ".$highest["time"]."</b><br>";
 
          
          
@@ -113,6 +114,84 @@
 
          
       }
+
+
+   function send_update_on_sold($auction){
+
+        $item_id = $auction["item_id"];
+         $item = get_item_id($item_id);
+
+         $seller = find_email($item["owner_id"]);
+
+         $to = $seller["email"];
+         $subject = "Your item has been sold";
+         
+         $message = "<b>Someone's recently bought your items..</b><br>";
+         $message .= "<h1>".$item["name"]."</h1><br>";
+
+         $highest = get_highest_bid($auction["id"]);
+         
+         $message .= "<b>Buyer</b><br>";
+         $message .= "<b>Item:".$item["name"]."</b><br>";
+         $message .= "<b>User :".$highest["user_id"]."</b><br>";
+         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Time : ".$highest["time"]."</b><br>";
+
+         
+         echo $message;
+         
+         $header = "From:no-reply-auctions@gmail.com \r\n";
+        
+         $header .= "MIME-Version: 1.0\r\n";
+         $header .= "Content-type: text/html\r\n";
+         
+         $retval = mail ($to,$subject,$message,$header);
+         
+         if( $retval == true ) {
+            echo "Message sent successfully...";
+         }else {
+            echo "Message could not be sent...";
+         }
+         }
+
+       function send_update_on_bought($auction){
+
+        $item_id = $auction["item_id"];
+         $item = get_item_id($item_id);
+
+         
+
+         $to = $seller["email"];
+         $subject = "Receipt for your new item";
+         
+         $message = "<b>You have recently bought an item</b><br>";
+         $message .= "<h1>".$item["name"]."</h1><br>";
+
+         $highest = get_highest_bid($auction["id"]);
+         $seller = find_email($highest["user_id"]);
+
+         $message .= "<b>Seller</b><br>";
+         $message .= "<b>Item:".$item["name"]."</b><br>";
+         $message .= "<b>User :".$item["owner_id"]."</b><br>";
+         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Time : ".$highest["time"]."</b><br>";
+
+         
+         echo $message;
+         
+         $header = "From:no-reply-auctions@gmail.com \r\n";
+        
+         $header .= "MIME-Version: 1.0\r\n";
+         $header .= "Content-type: text/html\r\n";
+         
+         $retval = mail ($to,$subject,$message,$header);
+         
+         if( $retval == true ) {
+            echo "Message sent successfully...";
+         }else {
+            echo "Message could not be sent...";
+         }
+         }  
       ?>
 
 

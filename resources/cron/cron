@@ -1,0 +1,1 @@
+00 00 * * * /usr/bin/curl --silent --compressed http://localhost:8888/email_time.php
