@@ -2,6 +2,7 @@
     session_start();
     require_once("../resources/modules/check_login.php");
     require_once("../resources/modules/auctions_thumbnail.php");
+    require_once("../resources/modules/auctions.php");
     check_login(true);
 ?>
 <!DOCTYPE html>
@@ -40,6 +41,7 @@
         <?php 
             $auctions_bidded = get_auctions_buyer($_SESSION["id"]);
             if ($auctions_bidded) {
+                echo item_html($auctions_bidded);
             } else { ?>
           You currently aren't bidding on anything. Explore EBid using the search bar!"
           <?php } ?>
@@ -51,7 +53,13 @@
           <h3 class="panel-title">Bought/Won</h3>
         </div>
         <div class="panel-body" class="sell-item">
+        <?php
+          $auctions_won = get_auctions_buyer_won($_SESSION["id"]);
+          if ($auctions_won) {
+            echo item_html_won($auctions_won);
+        } else { ?>
           You have no won items.
+          <?php } ?>
         </div>
       </div>
     </div>
