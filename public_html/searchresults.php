@@ -76,23 +76,36 @@
 
             if (isset($_POST["sortQuery"])) {
                 $sortOrder = $_POST['sortQuery'];
-                echo($sortOrder);
                 ?>
                 <script>
-                  alert("Test");
                   $('#searchResults').empty();
                 </script>
                 <?php
-                if($category == 'All'){
-                  $results = get_auctions_searchTermOnly($searchQuery);
-
+                  //Sort by price ascending
+                  if($sortOrder == 'priceLoHi'){
+                    if($category == 'All'){
+                      $results = sort_price_lohi($searchQuery);
+                      // echo("Price low high in all");
+                    }
+                    else{
+                      $results = sort_price_lohi_category($category, $searchQuery);
+                      // echo("Price low high in a category");
+                    }
+                  }
+                  //Sort by price descending
+                  else if($sortOrder == 'priceHiLo'){
+                    if($category == 'All'){
+                      $results = sort_price_hilo($searchQuery);
+                      // echo("Price high low in all");
+                    }
+                    else{
+                      $results = sort_price_hilo_category($category, $searchQuery);
+                      // echo("Price high low in a category");
+                    }
+                  }
+                  echo item_html($results);
                 }
-                else{
-                  $results = get_auctions_searchTerm_category($category, $searchQuery);
-
-                }
-            }
-           ?>
+                ?>
         </div>
       </div>
     <?php
