@@ -44,6 +44,8 @@
         }
         ?>
       <li><a href="newlisting.php">Sell</a></li>
+      <li><a href="logout.php">Logout</a></li>
+      
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your EBid<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">

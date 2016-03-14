@@ -4,6 +4,7 @@
     check_login(false);
     if (!isset($_GET['auction_id'])) {
         header("Location: index.php");
+        die();
     }
     require_once("../resources/modules/auctions.php");
     $auction = get_auctions_id($_GET['auction_id']);

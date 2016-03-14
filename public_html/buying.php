@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once("../resources/modules/check_login.php");
+    require_once("../resources/modules/auctions_thumbnail.php");
     check_login(true);
 ?>
 <!DOCTYPE html>
@@ -36,7 +37,12 @@
           <h3 class="panel-title">Currently Bids</h3>
         </div>
         <div class="panel-body" class="sell-item">
+        <?php 
+            $auctions_bidded = get_auctions_buyer($_SESSION["id"]);
+            if ($auctions_bidded) {
+            } else { ?>
           You currently aren't bidding on anything. Explore EBid using the search bar!"
+          <?php } ?>
         </div>
       </div>
 

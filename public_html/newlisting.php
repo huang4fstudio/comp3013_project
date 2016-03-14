@@ -20,9 +20,9 @@
                $imageProperties = getimagesize($_FILES['userImage']['tmp_name'])['mime'];
             }
         }
-        $item_id = new_item($name, $desc, $_SESSION['id'], $image, $imageProperties);
-        new_item_category($category_id, $item_id);
-        new_auction($item_id, $reserve_price, $end_date);
+        $item_id = new_item($name, $desc, $image, $imageProperties);
+//        new_item_category($category_id, $item_id);
+        new_auction($item_id, $reserve_price, $end_date, $_SESSION["id"]);
         header("Location: index.php");
         die();
     }

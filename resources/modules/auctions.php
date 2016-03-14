@@ -33,11 +33,18 @@
     }
 
     function get_auctions_buyer($uid) {
-        return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Bid AS b ON a.id = b.auction_id WHERE b.user_id='$uid'");
+        return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Bid AS b ON a.id = b.auction_id WHERE b.user_id='$uid' AND a.end_date > now()");
     }
 
-    function new_auction($item_id, $reserve_price, $end_date) {
-        return db_query("INSERT INTO Auction (id, reserve_price, end_date, item_id, highest_bid_id) VALUES (DEFAULT, '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', NULL)");
+    function get_auctions_buyer_won($uid) {
+        $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
+        $highest_bids = "(SELECT user_id, auction_id FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
+        $final_query = "SELECT * FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid'";
+        return db_fetch_all($final_query);
+    }
+
+    function new_auction($item_id, $reserve_price, $end_date, $seller_id) {
+        return db_query("INSERT INTO Auction (id, reserve_price, end_date, item_id, seller_id) VALUES (DEFAULT, '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', '$seller_id')");
     }
 
     function get_recommended_auctions($uid) {
@@ -52,6 +59,8 @@
     }
 
     function check_auction_feedback($id, $user_id) {
-        return db_fetch_array("SELECT a.* FROM Auction AS a INNER JOIN Bid AS b ON a.highest_bid_id = b.id WHERE now() > end_date AND a.id='$id' AND b.id='$user_id'");
+        $expired_auction = !get_auctions_id_current("$id");
+        $highest_bid = get_highest_bid($id);
+        return $expired_auction && $highest_bid["id"] === $id;
     }
 ?>
