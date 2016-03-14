@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    require_once("../resources/modules/check_login.php");
+    check_login(true);
+    require_once("../resources/modules/watchlists.php");
+    require_once("../resources/modules/auctions_thumbnail.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +28,26 @@
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
+      <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>
+        <li class="active">Watchlist</li>
+      </ul>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Watchlist</h3>
+        </div>
+        <div class="panel-body" class="sell-item">
+        <?php $auctions_watching = get_watched_items_user($_SESSION["id"]);
+            if ($auctions_watching) {
+                echo item_html($auctions_watching);
+            } else { ?>
+          You currently aren't watching any items.
+          <?php } ?>
+        </div>
+      </div>
+
+
     </div>
     <?php
       require_once("../resources/templates/footer.php");
