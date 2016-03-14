@@ -52,10 +52,10 @@
           echo("<h4>Search results for '$searchQuery' in '$category'</h4>");
         }
         ?>
-        <form name="sortForm" method="post" onchange="submitSortOrder()">
+        <form name="sortForm" method="post">
           <h4 id="sortButton">Sort</h4>
           <div class="input-group" id="sortDropdown">
-                <select name="sortQuery" class="form-control">
+                <select id="sortQuery" class="form-control">
                   <option disabled selected>-</option>
                   <option value="priceHiLo">Price High-Low</option>
                   <option value="priceLoHi">Price Low-High</option>
