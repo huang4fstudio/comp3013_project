@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2016 at 02:58 AM
+-- Generation Time: Mar 14, 2016 at 12:08 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -31,10 +31,9 @@ CREATE TABLE IF NOT EXISTS `Auction` (
   `reserve_price` int(11) NOT NULL,
   `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `item_id` int(11) NOT NULL,
-  `highest_bid_id` int(11) DEFAULT NULL,
   `views` int(255) NOT NULL,
   `seller_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -86,8 +85,7 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `image` mediumblob NOT NULL,
-  `image_type` varchar(10) NOT NULL,
-  `owner_id` int(11) NOT NULL
+  `image_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -150,7 +148,6 @@ CREATE TABLE IF NOT EXISTS `Watch_list` (
 ALTER TABLE `Auction`
   ADD PRIMARY KEY (`id`),
   ADD KEY `item_id` (`item_id`),
-  ADD KEY `highest_bid_id` (`highest_bid_id`),
   ADD KEY `seller_id` (`seller_id`);
 
 --
@@ -179,8 +176,7 @@ ALTER TABLE `Feedback`
 -- Indexes for table `Item`
 --
 ALTER TABLE `Item`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `owner_id` (`owner_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `Roles`
@@ -218,7 +214,7 @@ ALTER TABLE `Watch_list`
 -- AUTO_INCREMENT for table `Auction`
 --
 ALTER TABLE `Auction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `Bid`
 --
@@ -263,36 +259,29 @@ ALTER TABLE `Watch_list`
 --
 ALTER TABLE `Auction`
   ADD CONSTRAINT `auction_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `Item` (`id`),
-  ADD CONSTRAINT `auction_ibfk_2` FOREIGN KEY (`highest_bid_id`) REFERENCES `Bid` (`id`),
   ADD CONSTRAINT `auction_ibfk_3` FOREIGN KEY (`seller_id`) REFERENCES `User` (`id`);
 
 --
 -- Constraints for table `Bid`
 --
 ALTER TABLE `Bid`
-  ADD CONSTRAINT `bid_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
-  ADD CONSTRAINT `bid_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `bid_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `bid_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
 
 --
 -- Constraints for table `Feedback`
 --
 ALTER TABLE `Feedback`
-  ADD CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
   ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
-  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`buyer_id`) REFERENCES `User` (`id`);
-
---
--- Constraints for table `Item`
---
-ALTER TABLE `Item`
-  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`buyer_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `feedback_ibfk_3` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
 
 --
 -- Constraints for table `Roles`
 --
 ALTER TABLE `Roles`
-  ADD CONSTRAINT `roles_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
-  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `roles_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
 
 --
 -- Constraints for table `User_id`
