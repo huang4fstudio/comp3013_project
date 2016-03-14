@@ -1,4 +1,4 @@
-<?php   
+<?php
     session_start();
     require_once("../resources/modules/check_login.php");
     check_login(true);
@@ -35,14 +35,28 @@
 
   </head>
   <body>
-    
+
     <?php
       require_once("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
-    <h4>User: <?= $user["name"] ?></h4>
-    <span> Rating: <?= $seller_rating ?> </span>
+      <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>
+        <li class="active">Profile</li>
+      </ul>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User: <?= $user["name"] ?></h3>
+        </div>
+        <div class="panel-body">
+          <span> Rating: <?= $seller_rating ?></span>
+
+        </div>
+      </div>
+
+
     <!--End of wrapper for page content, beginning tag in header.php-->
     </div>
     <?php
