@@ -38,22 +38,22 @@
 
     function sort_price_lohi($term){
       $q_string = '%' . $term . '%';
-      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string' ORDER BY ");
+      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string' ORDER BY a.reserve_price ASC");
     }
 
     function sort_price_hilo($term){
       $q_string = '%' . $term . '%';
-      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string'");
+      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string' ORDER BY a.reserve_price DESC");
     }
 
     function sort_price_lohi_category($category, $term){
       $q_string = '%' . $term . '%';
-      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ");
+      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ORDER BY a.reserve_price ASC");
     }
 
     function sort_price_hilo_category($category, $term){
       $q_string = '%' . $term . '%';
-      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ");
+      return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ORDER BY a.reserve_price DESC");
     }
 
     function get_auctions_buyer($uid) {
