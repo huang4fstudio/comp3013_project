@@ -10,7 +10,7 @@
          $item_id = $auction["item_id"];
          $item = get_item_id($item_id);
 
-         $seller = find_email($item["owner_id"]);
+         $seller = find_email($auction["seller_id"]);
 
          $to = $seller["email"];
          $subject = "Some updates on your auctions";
@@ -48,7 +48,7 @@
          $item_id = $auction["item_id"];
          $item = get_item_id($item_id);
       
-         $seller = find_email($item["owner_id"]);
+         $seller = find_email($auction["seller_id"]);
         
          $to = $seller["email"];
          //$to = "kirthi.muralikrishnan.14@ucl.ac.uk";
@@ -121,7 +121,7 @@
         $item_id = $auction["item_id"];
          $item = get_item_id($item_id);
 
-         $seller = find_email($item["owner_id"]);
+         $seller = find_email($auction["seller_id"]);
 
          $to = $seller["email"];
          $subject = "Your item has been sold";
@@ -161,7 +161,7 @@
 
          
 
-         $to = $seller["email"];
+         
          $subject = "Receipt for your new item";
          
          $message = "<b>You have recently bought an item</b><br>";
@@ -169,7 +169,7 @@
 
          $highest = get_highest_bid($auction["id"]);
          $seller = find_email($highest["user_id"]);
-
+         $to = $seller["email"];
          $message .= "<b>Seller</b><br>";
          $message .= "<b>Item:".$item["name"]."</b><br>";
          $message .= "<b>User :".$item["owner_id"]."</b><br>";
