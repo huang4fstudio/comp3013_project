@@ -54,7 +54,7 @@
     function get_recommended_auctions($uid) {
         $auction_ids = "(SELECT DISTINCT auction_id AS uaid FROM Bid WHERE user_id='$uid')";
         $user_ids = "(SELECT user_id, auction_id AS oaid FROM Bid others INNER JOIN" . $auction_ids ."AS au ON au.uaid=others.auction_id)";
-        $final_auctions = "SELECT DISTINCT a.* FROM Auction AS a INNER JOIN " . $user_ids . " AS u ON u.oaid=a.id WHERE a.end_date > now()";
+        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN " . $user_ids . " AS u ON u.oaid=a.id WHERE a.end_date > now() GROUP BY a.id";
         return db_fetch_all($final_auctions);
     }
 
