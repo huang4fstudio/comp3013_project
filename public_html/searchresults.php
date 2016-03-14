@@ -3,6 +3,7 @@
    require_once("../resources/modules/check_login.php");
    check_login(true);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +24,6 @@
 
   </head>
   <body>
-
     <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
@@ -52,15 +52,16 @@
           echo("<h4>Search results for '$searchQuery' in '$category'</h4>");
         }
         ?>
-
-        <h4 id="sortButton">Sort</h4>
-        <div class="input-group" id="sortDropdown">
-              <select id="sortQuery" class="form-control">
-                <option disabled selected>-</option>
-                <option value="priceHiLo">Price High-Low</option>
-                <option value="priceLoHi">Price Low-High</option>
-              </select>
-        </div>
+        <form name="sortForm" method="post" onchange="submitSortOrder()">
+          <h4 id="sortButton">Sort</h4>
+          <div class="input-group" id="sortDropdown">
+                <select name="sortQuery" class="form-control">
+                  <option disabled selected>-</option>
+                  <option value="priceHiLo">Price High-Low</option>
+                  <option value="priceLoHi">Price Low-High</option>
+                </select>
+          </div>
+        </form>
 
         <div id="searchResults">
           <?php
@@ -72,12 +73,30 @@
             else{
               echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>");
             }
+
+            if (isset($_POST["sortQuery"])) {
+                $sortOrder = $_POST['sortQuery'];
+                echo($sortOrder);
+                ?>
+                <script>
+                  alert("Test");
+                  $('#searchResults').empty();
+                </script>
+                <?php
+                if($category == 'All'){
+                  $results = get_auctions_searchTermOnly($searchQuery);
+
+                }
+                else{
+                  $results = get_auctions_searchTerm_category($category, $searchQuery);
+
+                }
+            }
            ?>
         </div>
       </div>
     <?php
       require_once("../resources/templates/footer.php");
     ?>
-
   </body>
 </html>
