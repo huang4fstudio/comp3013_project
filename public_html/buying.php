@@ -38,12 +38,12 @@
           <h3 class="panel-title">Currently Bids</h3>
         </div>
         <div class="panel-body" class="sell-item">
-        <?php 
+        <?php
             $auctions_bidded = get_auctions_buyer($_SESSION["id"]);
             if ($auctions_bidded) {
                 echo item_html($auctions_bidded);
             } else { ?>
-          You currently aren't bidding on anything. Explore EBid using the search bar!"
+          You currently aren't bidding on anything. Explore EBid using the search bar!
           <?php } ?>
         </div>
       </div>
