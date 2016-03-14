@@ -76,17 +76,21 @@
           <span class="sr-only">Next</span>
         </a>
       </div><!--End of carousel-->
-
-      <h4>Recommended Auctions Based on Your Bids</h4>
-      <div class="item-thumbnails">
-        <?php
+    <?php
             require_once("../resources/modules/auctions.php");
             require_once("../resources/modules/auctions_thumbnail.php");
 
             $results = get_recommended_auctions($_SESSION["id"]);
-            if (!$results) {
-                $results = get_all_auctions();
-            }
+        if ($results) {
+    ?>       
+      <h4>Recommended Auctions Based on Your Bids</h4>
+     <?php } else { 
+        $results = get_all_auctions();
+        ?>
+      <h4>All Auctions</h4>
+       <?php } ?>
+      <div class="item-thumbnails">
+       <?php 
             echo item_html($results);
         ?>
       </div>
