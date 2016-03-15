@@ -170,9 +170,13 @@
               <div class="bid-button">
                   <button type="submit" class='btn btn-info' name="placeBid">Place Bid!</button>
               </div>
+              <?php if (check_watchlist($_SESSION["id"], $auction["id"])) { ?>
+              <span> This item is already in your watchlist. </span>
+              <?php else { ?>
               <div class="bid-button">
                   <button type="submit" class='btn btn-info' name="watchlist">Add to Watch List</button>
               </div>
+              <?php } ?>
             </div>
           </form>
         </div>
