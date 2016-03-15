@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `Auction` (
   `id` int(11) NOT NULL,
   `reserve_price` int(11) NOT NULL,
+  `start_price` int(11) NOT NULL,
   `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `item_id` int(11) NOT NULL,
   `views` int(255) NOT NULL,
