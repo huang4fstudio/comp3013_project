@@ -56,15 +56,18 @@
     //   return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ORDER BY a.reserve_price DESC");
     // }
 
+    function buyer_win_query($uid) {
+        $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
+        $highest_bids = "(SELECT user_id, auction_id, price FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price"; 
+    }
+
     function get_auctions_buyer($uid) {
         return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Bid AS b ON a.id = b.auction_id WHERE b.user_id='$uid' AND a.end_date > now()");
     }
 
     function get_auctions_buyer_won($uid) {
-        $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
-        $highest_bids = "(SELECT user_id, auction_id, price FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
-        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price";
-        return db_fetch_all($final_query);
+       return db_fetch_all(buyer_win_query($uid));
     }
 
     function new_auction($item_id, $reserve_price, $end_date, $seller_id) {
@@ -83,9 +86,7 @@
     }
 
     function check_auction_feedback($id, $user_id) {
-        $expired_auction = !get_auctions_id_current("$id");
-        $highest_bid = get_highest_bid($id);
-        return $expired_auction && $highest_bid["id"] === $id;
+        return db_query(buyer_win_query($user_id) . " AND a.id='$id'");
     }
 
     function update_auction_views($id) { 
