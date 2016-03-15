@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `User_id` (
 CREATE TABLE IF NOT EXISTS `Watch_list` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `auction_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -326,6 +326,7 @@ ALTER TABLE `User_id`
 --
 ALTER TABLE `Watch_list`
   ADD CONSTRAINT `watch_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
+  ADD CONSTRAINT `watch_list_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
