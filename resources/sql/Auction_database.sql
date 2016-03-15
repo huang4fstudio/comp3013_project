@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 14, 2016 at 01:19 PM
+-- Generation Time: Mar 15, 2016 at 05:45 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `auction`
+-- Database: `tempi`
 --
 
 -- --------------------------------------------------------
@@ -225,7 +225,8 @@ ALTER TABLE `User_id`
 --
 ALTER TABLE `Watch_list`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `auction_id` (`auction_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -326,8 +327,9 @@ ALTER TABLE `User_id`
 -- Constraints for table `Watch_list`
 --
 ALTER TABLE `Watch_list`
-  ADD CONSTRAINT `watch_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
-  ADD CONSTRAINT `watch_list_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
+  ADD CONSTRAINT `watch_list_ibfk_3` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`),
+  ADD CONSTRAINT `watch_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
+  ADD CONSTRAINT `watch_list_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
