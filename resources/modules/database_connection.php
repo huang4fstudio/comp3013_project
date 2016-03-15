@@ -36,12 +36,12 @@
     }
 
     function db_connect() {
-      //  $user = 'auction2';
-        $user = 'root';
-        $password = 'root';
-        // $password = 'password';
-        // $db = 'COMP3013';
-        $db = 'Auction_database';
+        $user = 'auction2';
+  //      $user = 'root';
+    //    $password = 'root';
+         $password = 'password';
+         $db = 'COMP3013';
+//        $db = 'Auction_database';
         $host = 'localhost';
         $port = 8889;
         // Define connection as a static variable, to avoid connecting more than once

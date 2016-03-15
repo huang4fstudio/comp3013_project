@@ -68,7 +68,7 @@
     }
 
     function new_auction($item_id, $reserve_price, $end_date, $seller_id) {
-        return db_query("INSERT INTO Auction (id, reserve_price, end_date, item_id, seller_id) VALUES (DEFAULT, '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', '$seller_id')");
+        return db_query("INSERT INTO Auction (id, reserve_price, end_date, item_id, seller_id, views) VALUES (DEFAULT, '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', '$seller_id', 0)");
     }
 
     function get_recommended_auctions($uid) {
@@ -86,5 +86,9 @@
         $expired_auction = !get_auctions_id_current("$id");
         $highest_bid = get_highest_bid($id);
         return $expired_auction && $highest_bid["id"] === $id;
+    }
+
+    function update_auction_views($id) { 
+        return db_query("UPDATE Auction SET views = views + 1 WHERE id='$id'");
     }
 ?>

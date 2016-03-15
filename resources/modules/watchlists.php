@@ -13,4 +13,8 @@
         return db_query("INSERT INTO Watch_list (user_id, item_id) VALUES ('$uid', '$item_id')");
     }
 
+    function check_watchlist($uid, $item_id) {
+        return db_query("SELECT item_id FROM Watch_list WHERE user_id='$uid' AND item_id='$item_id'");
+    }
+
    ?>

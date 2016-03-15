@@ -20,6 +20,7 @@
         header("location:index.php");
         die();
     }
+    update_auction_views($auction['id']);
     $highest_bid = get_highest_bid($auction['id']);
     $item = get_item_id($auction['item_id']);
     $seller = find_user_id($auction['seller_id']);
