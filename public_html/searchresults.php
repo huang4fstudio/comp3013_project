@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EBid: Selling</title>
+    <title>EBid: Search Results</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
@@ -49,7 +49,7 @@
         }
         else{
           $results = get_auctions_searchTerm_category($category, $searchQuery);
-          echo("<h4>Search results for '$searchQuery' in '$category'</h4>");
+          echo("<h4>Search results for '$searchQuery' in '$category'</h4>"); //Get 
         }
         ?>
         <form name="sortForm" method="post">
@@ -74,37 +74,37 @@
               echo("<h3>Uh oh! It looks like we couldn't find any items that matched.</h3>");
             }
 
-            if (isset($_POST["sortQuery"])) {
-                $sortOrder = $_POST['sortQuery'];
-                ?>
-                <script>
-                  $('#searchResults').empty();
-                </script>
-                <?php
-                  //Sort by price ascending
-                  if($sortOrder == 'priceLoHi'){
-                    if($category == 'All'){
-                      $results = sort_price_lohi($searchQuery);
-                      // echo("Price low high in all");
-                    }
-                    else{
-                      $results = sort_price_lohi_category($category, $searchQuery);
-                      // echo("Price low high in a category");
-                    }
-                  }
-                  //Sort by price descending
-                  else if($sortOrder == 'priceHiLo'){
-                    if($category == 'All'){
-                      $results = sort_price_hilo($searchQuery);
-                      // echo("Price high low in all");
-                    }
-                    else{
-                      $results = sort_price_hilo_category($category, $searchQuery);
-                      // echo("Price high low in a category");
-                    }
-                  }
-                  echo item_html($results);
-                }
+            // if (isset($_POST["sortQuery"])) {
+            //     $sortOrder = $_POST['sortQuery'];
+            //     ?>
+                 <!-- <script>
+            //       $('#searchResults').empty();
+            //     </script> -->
+                 <?php
+            //       //Sort by price ascending
+            //       if($sortOrder == 'priceLoHi'){
+            //         if($category == 'All'){
+            //           $results = sort_price_lohi($searchQuery);
+            //           // echo("Price low high in all");
+            //         }
+            //         else{
+            //           $results = sort_price_lohi_category($category, $searchQuery);
+            //           // echo("Price low high in a category");
+            //         }
+            //       }
+            //       //Sort by price descending
+            //       else if($sortOrder == 'priceHiLo'){
+            //         if($category == 'All'){
+            //           $results = sort_price_hilo($searchQuery);
+            //           // echo("Price high low in all");
+            //         }
+            //         else{
+            //           $results = sort_price_hilo_category($category, $searchQuery);
+            //           // echo("Price high low in a category");
+            //         }
+            //       }
+            //       echo item_html($results);
+            //     }
                 ?>
         </div>
       </div>
