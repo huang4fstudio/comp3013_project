@@ -95,17 +95,8 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner" role="listbox"> <!--PHP NEEDED: images for gallery-->
             <div class="item active">
-              <img src="img/placeholder.png" class="auction-item-img" data-imagezoom="true">
+              <img src="img/image_view.php?item_id=<?= $item["id"] ?>" class="auction-item-img" data-imagezoom="true">
             </div>
-
-            <div class="item">
-              <img src="img/placeholder.png" class="auction-item-img" data-imagezoom="true">
-            </div>
-
-            <div class="item">
-              <img src="img/placeholder.png" class="auction-item-img" data-imagezoom="true">
-            </div>
-
             <div class="item">
               <img src="img/placeholder.png" class="auction-item-img" data-imagezoom="true">
             </div>
@@ -172,7 +163,7 @@
               </div>
               <?php if (check_watchlist($_SESSION["id"], $auction["id"])) { ?>
               <span> This item is already in your watchlist. </span>
-              <?php else { ?>
+              <?php } else { ?>
               <div class="bid-button">
                   <button type="submit" class='btn btn-info' name="watchlist">Add to Watch List</button>
               </div>

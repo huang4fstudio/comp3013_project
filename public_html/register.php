@@ -31,7 +31,7 @@
         <div class="form-wrapper">
         <form class='form-horizontal' method="post">
           <!-- <fieldset> -->
-            <h3>Thanks for joining!</h3>
+            <h3>Welcome to EBid!</h3>
             <div class='form-group'>
               <label class='col-md-1 control-label'>Username</label>
               <div class='col-md-3'>
@@ -80,7 +80,7 @@
             $data = db_query($newEmailQuery) or die(mysql_error());
         	if($data){
              ?>
-        	   <script>alert('Successfully registered');</script>
+        	   <script>alert('Successfully registered, please proceed to the login page!');</script>
              <?php
         	}
           else{
