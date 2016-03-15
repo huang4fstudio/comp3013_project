@@ -4,11 +4,11 @@
       var valueSelected = this.value;
 
       if(valueSelected=="priceHiLo"){
-        alert("Sort high low");
+        // alert("Sort high low");
         sortPriceHighLow($('#searchResults'), "div", "span > .itemPrice");
       }
       else if(valueSelected="priceLoHi"){
-        alert("Sort low high");
+        // alert("Sort low high");
         sortPriceLowHigh($('#searchResults'), "div", "span > .itemPrice");
       }
    });
@@ -16,9 +16,9 @@
 
  function sortPriceLowHigh(parent, childSelector, keySelector) {
       var items = parent.children(childSelector).sort(function(a, b) {
-          var vA = $(keySelector, a).text();
-          var vB = $(keySelector, b).text();
-          return (vA > vB) ? -1 : (vA < vB) ? 1 : 0;
+          var A= $(keySelector, a).text();  A = parseInt(A.toString().substring(1), 10);
+          var B = $(keySelector, b).text(); B = parseInt(B.toString().substring(1), 10);
+          return (A< B) ? -1 : (A> B) ? 1 : 0; //compare first element's price to second
       });
       parent.empty();
       console.log(items);
@@ -27,9 +27,9 @@
 
  function sortPriceHighLow(parent, childSelector, keySelector) {
       var items = parent.children(childSelector).sort(function(a, b) {
-          var vA = $(keySelector, a).text();
-          var vB = $(keySelector, b).text();
-          return (vA < vB) ? -1 : (vA > vB) ? 1 : 0;
+          var A= $(keySelector, a).text();  A = parseInt(A.toString().substring(1), 10);
+          var B = $(keySelector, b).text(); B = parseInt(B.toString().substring(1), 10);
+          return (A> B) ? -1 : (A< B) ? 1 : 0; //compare first element's price to second
       });
       parent.empty();
       console.log(items);
