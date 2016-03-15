@@ -10,8 +10,9 @@
     if(isset($_POST['login'])){
         //Collect info from login form
         $email = $_POST['inputEmail'];
+        $salt = "php:<sVcKS";
         $password = $_POST['inputPass'];
-
+        $password = md5($salt . $password);
         //Find if entered data is correct
         $row = find_user_email($email);
 

@@ -68,10 +68,11 @@
       require_once("../resources/modules/database_connection.php");
         //Register new user by adding to user database
         if(isset($_POST['registerUser'])){
-        $newID = $_POST[hexdec(uniqid())]; //Generage unique intger id
           $newName = $_POST['inputName'];
         	$newEmail = $_POST['inputEmail'];
+            $salt = "php:<sVcKS";
         	$newPass =  $_POST['inputPass'];
+            $newPass = md5($salt . $newPass);
             $location = -1;
         	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', NULL)";
             $newEmailQuery = "INSERT INTO User_id (id, email) VALUES (LAST_INSERT_ID(), '$newEmail')";
