@@ -36,10 +36,10 @@
     }
 
     function db_connect() {
-        $user = 'auction2';
+        $user = 'kirthi';
   //      $user = 'root';
     //    $password = 'root';
-         $password = 'password';
+         $password = 'kirthi';
          $db = 'COMP3013';
 //        $db = 'Auction_database';
         $host = 'localhost';

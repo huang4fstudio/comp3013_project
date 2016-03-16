@@ -9,15 +9,22 @@
  foreach ($results as $auction) 
  {
   send_update_on_views($auction);
-  $time = $auction["end_date"];
-//  if(time == date('Y-m-d H:i:s'))
- // {
-//     	send_update_on_sold($auction);
- //       send_update_on_bought($auction);
-//  }
+       
+ 
  
  }
    
+   $results1 = get_auctions_sold_today();
+   foreach ($results1 as $auction1) {
+   	send_update_on_bought($auction1);
+   	send_update_on_sold($auction2);
+   }
+
+   $results2 = get_auctions_not_sold_today();
+   foreach ($results2 as $auction2) {
+   	send_update_on_not_sold($auction2);
+   }
+
 
 ?>
 
