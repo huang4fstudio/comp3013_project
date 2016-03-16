@@ -1,5 +1,8 @@
 
- $(document).ready(function () {
+var valueSelected;
+
+//Sorting for search results
+$(document).ready(function () {
    $('#sortQuery').change(function () {
       var valueSelected = this.value;
 
@@ -12,6 +15,7 @@
         sortPriceLowHigh($('#searchResults'), "div", "span > .itemPrice");
       }
    });
+
  });
 
  function sortPriceLowHigh(parent, childSelector, keySelector) {
@@ -35,16 +39,15 @@
       console.log(items);
       parent.append(items);
  }
-function submitSortOrder(){
-   sortForm.submit();
-}
 
+//Datepicker for new listing
 window.onload = function() {
   $('.input-group.date').datepicker({
     todayHighlight: true
   });
 };
 
+//Count characters for feedback
 function countChar(val) {
    var len = val.value.length;
    if (len >= 500) {
