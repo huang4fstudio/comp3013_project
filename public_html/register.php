@@ -73,9 +73,8 @@
         	$newPass =  $_POST['inputPass'];
             $newPass = md5($salt . $newPass);
             $location = -1;
-        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating, email) VALUES (DEFAULT, '$newName', '$newPass', '$location', NULL, '$newEmail')";
+        	$newUserQuery = "INSERT INTO User (id, name, password, location, email, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', '$newEmail', NULL)";
         	$data = db_query($newUserQuery) or die(mysql_error());
-            $data = db_query($newEmailQuery) or die(mysql_error());
         	if($data){
              ?>
         	   <script>alert('Successfully registered, please proceed to the login page!');</script>
