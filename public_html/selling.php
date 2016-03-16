@@ -43,7 +43,7 @@
             if ($auctions_selling) {
                 echo item_html($auctions_selling);
             } else { ?>
-          You currently aren't selling anything. Click " 'Sell' to get started!"
+          You currently aren't selling anything. Click 'Sell' to get started!
           <?php } ?>
         </div>
       </div>
