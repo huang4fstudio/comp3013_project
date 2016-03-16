@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `Item` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `image` mediumblob NOT NULL,
-  `image_type` varchar(10) NOT NULL
+  `image` mediumblob DEFAULT NULL,
+  `image_type` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
