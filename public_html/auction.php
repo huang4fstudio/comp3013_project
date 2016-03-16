@@ -26,7 +26,7 @@
     $item = get_item_id($auction['item_id']);
     $seller = find_user_id($auction['seller_id']);
     $seller_rating = "No Seller Rating";
-    
+
     if ($seller['seller_rating']) {
         $seller_rating = $seller['seller_rating'];
     }
@@ -69,7 +69,7 @@
     <title>EBid: Auction</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
@@ -152,7 +152,7 @@
             <div class="col-sm-4">
               Reserve Price: £<span name="reservePrice"><?= $auction['reserve_price'] ?></span> <!--PHP NEEDED: reserve price-->
             <span class="selling-info">Highest Bid Price: £</span><span name="numBids"><?= $highest_bid_price ?></span><!--PHP NEEDED: number of bids-->
-              
+
             </div>
             <div class="bid-input">
               <div class="col-sm-4">
@@ -188,7 +188,7 @@
           </div>
         </div>
       </div>
-      
+
 
 -->
     </div>
