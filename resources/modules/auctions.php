@@ -9,7 +9,6 @@
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id' AND end_date > now()");
     }
 
-
     function get_all_auctions() {
         return db_fetch_all("SELECT * FROM Auction WHERE end_date > now()");
     }
@@ -59,7 +58,7 @@
     function buyer_win_query($uid) {
         $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
         $highest_bids = "(SELECT user_id, auction_id, price FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
-        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price"; 
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price";
     }
 
     function get_auctions_buyer($uid) {
@@ -89,7 +88,7 @@
         return db_query(buyer_win_query($user_id) . " AND a.id='$id'");
     }
 
-    function update_auction_views($id) { 
+    function update_auction_views($id) {
         return db_query("UPDATE Auction SET views = views + 1 WHERE id='$id'");
     }
 ?>
