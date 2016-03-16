@@ -8,15 +8,13 @@
  $results = get_all_auctions();
  foreach ($results as $auction) 
  {
-  
-
   send_update_on_views($auction);
   $time = $auction["end_date"];
-  if(time == date('Y-m-d H:i:s'))
-  {
-     	send_update_on_sold($auction);
-        send_update_on_bought($auction);
-  }
+//  if(time == date('Y-m-d H:i:s'))
+ // {
+//     	send_update_on_sold($auction);
+ //       send_update_on_bought($auction);
+//  }
  
  }
    

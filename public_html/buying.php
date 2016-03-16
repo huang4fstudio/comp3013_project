@@ -35,7 +35,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Currently Bids</h3>
+          <h3 class="panel-title">Current Bids</h3>
         </div>
         <div class="panel-body" class="sell-item">
         <?php

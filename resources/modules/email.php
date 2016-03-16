@@ -14,6 +14,7 @@
 
          $to = $seller["email"];
          $subject = "Some updates on your auctions";
+         echo $to;
          
          $message = "<b>Someone's recently bid on your items..</b><br>";
          $message .= "<h1>".$item["name"]."</h1><br>";
@@ -57,19 +58,19 @@
          $message = "<b>Someone's recently viewed your items..</b>";
          $message .= "<h1>".$item["name"]."</h1><br>";
 
-         $message .="<h2>You have ".$auction["views"]."</h2><br>";
+         $message .="<h2>You have ". $auction["views"] ."views </h2><br>";
          
-         $header = "From:no-reply-auctions@gmail.com \r\n";
+         $header = "From:no-reply-auctions@gmail.com\r\n";
         
          $header .= "MIME-Version: 1.0\r\n";
          $header .= "Content-type: text/html\r\n";
          
          echo $message;
-         $retval = mail ($to,$subject,$message,$header);
+         $retval = mail($to,$subject,$message,$header);
          
          if( $retval == true ) {
             echo "Message sent successfully...";
-         }else {
+         } else {
             echo "Message could not be sent...";
          }
          }
@@ -172,7 +173,7 @@
          $to = $seller["email"];
          $message .= "<b>Seller</b><br>";
          $message .= "<b>Item:".$item["name"]."</b><br>";
-         $message .= "<b>User :".$item["owner_id"]."</b><br>";
+         $message .= "<b>User :".$auction["seller_id"]."</b><br>";
          $message .= "<b>Price :".$highest["price"]."</b><br>";
          $message .= "<b>Time : ".$highest["time"]."</b><br>";
 

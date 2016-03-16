@@ -6,15 +6,15 @@
     }
 
     function get_watching_users_item($item_id) {
-        return db_fetch_all("SELECT user_id FROM Watch_list WHERE item_id='$item_id'");
+        return db_fetch_all("SELECT user_id FROM Watch_list WHERE auction_id='$item_id'");
     }
 
     function add_watchlist($uid, $item_id) {
-        return db_query("INSERT INTO Watch_list (user_id, item_id) VALUES ('$uid', '$item_id')");
+        return db_query("INSERT INTO Watch_list (user_id, auction_id) VALUES ('$uid', '$item_id')");
     }
 
     function check_watchlist($uid, $item_id) {
-        return db_query("SELECT item_id FROM Watch_list WHERE user_id='$uid' AND item_id='$item_id'");
+        return db_fetch_array("SELECT id FROM Watch_list WHERE user_id='$uid' AND auction_id='$item_id'");
     }
 
    ?>
