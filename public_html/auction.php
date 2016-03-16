@@ -43,7 +43,7 @@
 
     if (isset($_POST['watchlist'])){
       add_watchlist($_SESSION['id'], $auction['id']);
-      send_update_on_watch_list($auction, $_SESSION['id']);
+      // send_update_on_watch_list($auction, $_SESSION['id']);
     }
 
     if (isset($_POST['placeBid'])) {
@@ -52,7 +52,7 @@
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
             send_update_on_auctions($auction);
-            //send_update_on_watch_list($auction, $_SESSION['id']);
+            send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 
