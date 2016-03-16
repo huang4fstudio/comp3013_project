@@ -2,6 +2,7 @@
     session_start();
     require_once("../resources/modules/check_login.php");
     require_once("../resources/modules/watchlists.php");
+    require_once("../resources/modules/email.php");
     check_login(true);
 
     if (!isset($_GET['auction_id'])) {
@@ -42,6 +43,7 @@
 
     if (isset($_POST['watchlist'])){
       add_watchlist($_SESSION['id'], $auction['id']);
+      // send_update_on_watch_list($auction, $_SESSION['id']);
     }
 
     if (isset($_POST['placeBid'])) {
@@ -49,8 +51,8 @@
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
-           // send_update_on_auctions($auction);
-            //send_update_on_watch_list($auction, $_SESSION['id']);
+            send_update_on_auctions($auction);
+            send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 

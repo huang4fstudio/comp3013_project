@@ -18,7 +18,18 @@
     }
 
     function get_auctions_sold($uid) {
-        return db_fetch_all("SELECT * FROM Auction WHERE seller_id='$uid' AND end_date <= now()");
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . highest_bids_query($uid) . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price AND a.seller_id='$uid'"; 
+        return db_fetch_all($final_query);
+    }
+
+    function get_auctions_sold_today() {
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . highest_bids_query($uid) . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date > DATE_SUB(now(), INTERVAL 30 MINUTE) AND end_date < now() AND hb.price >= a.reserve_price"; 
+        return db_fetch_all($final_query);
+    }
+
+    function get_auctions_not_sold_today() {
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . highest_bids_query($uid) . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date > DATE_SUB(now(), INTERVAL 30 MINUTE) AND end_date < now() AND hb.price < a.reserve_price"; 
+        return db_fetch_all($final_query);
     }
 
     function get_auctions_category($category) {
@@ -35,30 +46,14 @@
         return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c.category_id='$category' AND i.name LIKE '$q_string' ");
     }
 
-    // function sort_price_lohi($term){
-    //   $q_string = '%' . $term . '%';
-    //   return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string' ORDER BY a.reserve_price ASC");
-    // }
-    //
-    // function sort_price_hilo($term){
-    //   $q_string = '%' . $term . '%';
-    //   return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id WHERE a.end_date > now() AND i.name LIKE '$q_string' ORDER BY a.reserve_price DESC");
-    // }
-    //
-    // function sort_price_lohi_category($category, $term){
-    //   $q_string = '%' . $term . '%';
-    //   return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ORDER BY a.reserve_price ASC");
-    // }
-    //
-    // function sort_price_hilo_category($category, $term){
-    //   $q_string = '%' . $term . '%';
-    //   return db_fetch_all("SELECT a.* FROM Auction AS a INNER JOIN Item As i ON a.item_id = i.id INNER JOIN Item_category as c ON i.id = c.item_id WHERE a.end_date > now() AND c. category_id='$category' AND i.name LIKE '$q_string' ORDER BY a.reserve_price DESC");
-    // }
-
-    function buyer_win_query($uid) {
+    function highest_bids_query($uid) {
         $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
         $highest_bids = "(SELECT user_id, auction_id, price FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
+<<<<<<< HEAD
         $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price";
+=======
+        return $highest_bids;
+>>>>>>> 2f7f5bb8beb0c27eba4c9d2fe7fc735bdf82f2d6
     }
 
     function get_auctions_buyer($uid) {
@@ -66,7 +61,8 @@
     }
 
     function get_auctions_buyer_won($uid) {
-       return db_fetch_all(buyer_win_query($uid));
+       $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . highest_bids_query($uid) . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price"; 
+       return db_fetch_all($final_query);
     }
 
     function new_auction($item_id, $reserve_price, $end_date, $seller_id) {
@@ -81,11 +77,12 @@
     }
 
     function get_expired_auctions() {
-        return db_fetch_all("SELECT * FROM Auction WHERE end_date > DATE_SUB(now(), INTERVAL 30 MINUTE)");
+        return db_fetch_all("SELECT * FROM Auction WHERE end_date > DATE_SUB(now(), INTERVAL 30 MINUTE) end_date < now()");
     }
 
     function check_auction_feedback($id, $user_id) {
-        return db_query(buyer_win_query($user_id) . " AND a.id='$id'");
+        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . highest_bids_query($uid) . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price AND a.id='$id'"; 
+        return db_query($final_query);
     }
 
     function update_auction_views($id) {

@@ -5,11 +5,11 @@
     }
 
     function find_user_email($email) {
-        return db_fetch_array("SELECT * FROM User_id WHERE email='$email'");
+        return db_fetch_array("SELECT * FROM User WHERE email='$email'");
     }
     
     function find_email($id) {
-        return db_fetch_array("SELECT email FROM User_id WHERE id='$id'");
+        return db_fetch_array("SELECT email FROM User WHERE id='$id'");
     }
 
     function find_user_username_id($username, $id) {

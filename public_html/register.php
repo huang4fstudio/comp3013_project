@@ -1,5 +1,4 @@
 <?php
-
     session_start();
     require_once("../resources/modules/check_login.php");
     check_login(false);
@@ -74,9 +73,7 @@
         	$newPass =  $_POST['inputPass'];
             $newPass = md5($salt . $newPass);
             $location = -1;
-        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating) VALUES (DEFAULT, '$newName', '$newPass', '$location', NULL)";
-            $newEmailQuery = "INSERT INTO User_id (id, email) VALUES (LAST_INSERT_ID(), '$newEmail')";
-            echo $newUserQuery;
+        	$newUserQuery = "INSERT INTO User (id, name, password, location, seller_rating, email) VALUES (DEFAULT, '$newName', '$newPass', '$location', NULL, '$newEmail')";
         	$data = db_query($newUserQuery) or die(mysql_error());
             $data = db_query($newEmailQuery) or die(mysql_error());
         	if($data){

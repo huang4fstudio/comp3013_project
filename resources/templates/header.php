@@ -33,13 +33,12 @@
         </form>
       </li>
         <?php
-        $username = $_SESSION['name'];
-
         //Check if have username and password
-        if(!$username){
+        if(!isset($_SESSION['name'])){
           echo "<li class='navbar-text'>Hello Guest!</li> <li><a href='login.php'>Login</a><li> <li><a href='register.php'>Register</a><li>";
         }
         else{
+        $username = $_SESSION['name'];
           echo "<li class='navbar-text'>Hello ".$username."!</li>";
         }
         ?>
