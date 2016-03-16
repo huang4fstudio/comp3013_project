@@ -79,6 +79,7 @@
 
          $item_id = $auction["item_id"];
          $results = get_watching_users_item($item_id);
+         $item = get_item_id($item_id);
          foreach ($results as $row) {
             if(row["user_id"]!=$id){
             $watcher = find_email($row["user_id"]);
