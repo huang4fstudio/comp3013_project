@@ -125,18 +125,8 @@ CREATE TABLE IF NOT EXISTS `User` (
   `name` varchar(255) NOT NULL,
   `password` char(32) NOT NULL,
   `location` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL UNIQUE,
   `seller_rating` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `User_id`
---
-
-CREATE TABLE IF NOT EXISTS `User_id` (
-  `email` varchar(255) NOT NULL,
-  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -212,13 +202,6 @@ ALTER TABLE `Roles`
 --
 ALTER TABLE `User`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `User_id`
---
-ALTER TABLE `User_id`
-  ADD PRIMARY KEY (`email`),
-  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `Watch_list`
@@ -316,12 +299,6 @@ ALTER TABLE `Item_category`
 ALTER TABLE `Roles`
   ADD CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
   ADD CONSTRAINT `roles_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `Auction` (`id`);
-
---
--- Constraints for table `User_id`
---
-ALTER TABLE `User_id`
-  ADD CONSTRAINT `user_id_ibfk_1` FOREIGN KEY (`id`) REFERENCES `User` (`id`);
 
 --
 -- Constraints for table `Watch_list`
