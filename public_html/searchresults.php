@@ -49,9 +49,10 @@
         }
         else{
           $results = get_auctions_searchTerm_category($category, $searchQuery);
-          echo("<h4>Search results for '$searchQuery' in '$category'</h4>"); //Get 
+          echo("<h4>Search results for '$searchQuery'</h4>");  //equals "Text"); //Get
         }
         ?>
+
         <form name="sortForm" method="post">
           <h4 id="sortButton">Sort</h4>
           <div class="input-group" id="sortDropdown">
