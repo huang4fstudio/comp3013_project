@@ -59,7 +59,7 @@
          $message .= "<h1> The item recently viewed is: ".$item["name"]."</h1><br>";
 
          $message .="<h2>Congratulations!! You have ".$auction["views"]."</h2>";
-         $message .="<h2>views</h2></br>"
+         $message .="<h2>views</h2></br>";
          $header = "From:no-reply-auctions@gmail.com\r\n";
         
          $header .= "MIME-Version: 1.0\r\n";
@@ -81,7 +81,7 @@
          $results = get_watching_users_item($item_id);
          $item = get_item_id($item_id);
          foreach ($results as $row) {
-            if(row["user_id"]!=$id){
+         if($row["user_id"]!=$id){
             $watcher = find_email($row["user_id"]);
 
             $to = $watcher["email"];
@@ -171,7 +171,7 @@ function send_update_on_not_sold($auction){
          
          $message .= "<b>Item:".$item["name"]."</b><br>";
          
-         $message .= "<h1> Unfortunately noone has bought your item and it has been removed from the auction..<br>"
+         $message .= "<h1> Unfortunately noone has bought your item and it has been removed from the auction..<br>";
          
          echo $message;
          
