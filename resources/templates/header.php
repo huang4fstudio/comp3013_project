@@ -16,7 +16,7 @@
       <li>
         <form class="navbar-form navbar-left" role="search" action="searchresults.php">
         <div class="input-group">
-          <select class="form-control" name="categoryQuery">
+          <select id="categorySelect" class="form-control" name="categoryQuery" >
             <option value="All">All</option>
             <?php
               require_once("../resources/modules/categories.php");
