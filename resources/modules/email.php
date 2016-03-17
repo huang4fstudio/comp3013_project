@@ -19,7 +19,7 @@
          $message .= "<b>New bid</b><br>";
          $message .= "<b>Item:". $item["name"] ."</b><br>";
          $message .= "<b>User :" . find_user_id($highest["user_id"])["name"] . "</b><br>";
-         $message .= "<b>Price :". $highest["price"]."</b><br>";
+         $message .= "<b>Price :£". $highest["price"]."</b><br>";
          $message .= "<b>Time : ". $highest["time"]."</b><br>";
 
          
@@ -58,7 +58,7 @@
          $message .= "<b>Your new bid</b><br>";
          $message .= "<b>Item:".$item["name"]."</b><br>";
          $message .= "<b>User :".$highest["user_id"]."</b><br>";
-         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Price :£".$highest["price"]."</b><br>";
          $message .= "<b>Time : ".$highest["time"]."</b><br>";
 
          
@@ -131,7 +131,7 @@
          
          $message .= "<b>A new bid was made</b><br>";
          $message .= "<b>User :".$highest["user_id"]."</b><br>";
-         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Price :£".$highest["price"]."</b><br>";
          $message .= "<b>Time : ".$highest["time"]."</b><br>";
 
          
@@ -172,7 +172,7 @@
          
          $message .= "<b>Item:".$item["name"]."</b><br>";
          $message .= "<b>Buyer :".$highest["user_id"]."</b><br>";
-         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Price :£".$highest["price"]."</b><br>";
          
          $header = "From:no-reply-auctions@gmail.com \r\n";
         
@@ -233,7 +233,7 @@
          $to = $seller["email"];
          $message .= "<b>Item:".$item["name"]."</b><br>";
          $message .= "<b>Seller :".$auction["seller_id"]."</b><br>";
-         $message .= "<b>Price :".$highest["price"]."</b><br>";
+         $message .= "<b>Price :£".$highest["price"]."</b><br>";
 
          
          echo $message;
