@@ -1,9 +1,15 @@
 <?php
+    require_once("bids.php");
     require_once("items.php");
     require_once("feedbacks.php");
     function item_html($results) {
         ob_start();
         foreach ($results as $row) {
+        $lowest_price = $row['start_price'] + 1;
+        $highest_bid = get_highest_bid($row["id"]);
+        if ($highest_bid) {
+            $lowest_price = $highest_bid["price"] + 1;
+        }
         $item = get_item_id($row['item_id']);
     ?>
 <div class="item-thumbnail">
@@ -15,7 +21,7 @@
   <span>
     <a href="auction.php?auction_id=<?= $row['id'] ?>"> <?= $item['name'] ?> </a>
     <br>
-    <strong class="itemPrice" name="itemPrice">£<?= $row['reserve_price'] ?></strong>
+    Bid Price:&nbsp;<strong class="itemPrice" name="itemPrice">£<?= $lowest_price ?></strong>
   </span>
 </div>
 <?php }

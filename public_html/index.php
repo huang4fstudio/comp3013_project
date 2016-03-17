@@ -87,7 +87,7 @@
      <?php } else { 
         $results = get_all_auctions();
         ?>
-      <h4>All Auctions</h4>
+      <h4>All Auctions (No Recommended Auctions Yet)</h4>
        <?php } ?>
       <div class="item-thumbnails">
        <?php 

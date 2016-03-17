@@ -31,7 +31,7 @@ $(document).ready(function () {
 
  function sortPriceHighLow(parent, childSelector, keySelector) {
       var items = parent.children(childSelector).sort(function(a, b) {
-          var A= $(keySelector, a).text();  A = parseInt(A.toString().substring(1), 10);
+          var A = $(keySelector, a).text();  A = parseInt(A.toString().substring(1), 10);
           var B = $(keySelector, b).text(); B = parseInt(B.toString().substring(1), 10);
           return (A> B) ? -1 : (A< B) ? 1 : 0; //compare first element's price to second
       });

@@ -5,6 +5,10 @@
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id'");
     }
 
+    function get_time_left($id) {
+        return mysqli_fetch_assoc(db_query("SELECT DATEDIFF(end_date, now()) AS days FROM Auction WHERE id='$id'"))["days"];
+    }
+
      function get_auctions_id_current($id) {
         return db_fetch_array("SELECT * FROM Auction WHERE id='$id' AND end_date > now()");
     }
@@ -49,11 +53,7 @@
     function highest_bids_query($uid) {
         $highest_bid_ids = "(SELECT MAX(id) AS mid, b1.auction_id AS maid FROM Bid b1 GROUP BY b1.auction_id)";
         $highest_bids = "(SELECT user_id, auction_id, price FROM Bid AS fullBid INNER JOIN " . $highest_bid_ids . "AS highestBids ON highestBids.mid=fullBid.id)";
-<<<<<<< HEAD
-        $final_query = "SELECT a.* FROM Auction AS a INNER JOIN " . $highest_bids . " AS hb ON a.id=hb.auction_id WHERE hb.user_id='$uid' AND end_date <= now() AND hb.price >= a.reserve_price";
-=======
         return $highest_bids;
->>>>>>> 2f7f5bb8beb0c27eba4c9d2fe7fc735bdf82f2d6
     }
 
     function get_auctions_buyer($uid) {
@@ -65,14 +65,15 @@
        return db_fetch_all($final_query);
     }
 
-    function new_auction($item_id, $reserve_price, $end_date, $seller_id) {
-        return db_query("INSERT INTO Auction (id, reserve_price, end_date, item_id, seller_id, views) VALUES (DEFAULT, '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', '$seller_id', 0)");
+    function new_auction($item_id, $starting_price, $reserve_price, $end_date, $seller_id) {
+        return db_query("INSERT INTO Auction (id, start_price, reserve_price, end_date, item_id, seller_id, views) VALUES (DEFAULT, '$starting_price', '$reserve_price', FROM_UNIXTIME('$end_date'), '$item_id', '$seller_id', 0)");
     }
 
     function get_recommended_auctions($uid) {
         $auction_ids = "(SELECT DISTINCT auction_id AS uaid FROM Bid WHERE user_id='$uid')";
-        $user_ids = "(SELECT user_id, auction_id AS oaid FROM Bid others INNER JOIN" . $auction_ids ."AS au ON au.uaid=others.auction_id)";
-        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN " . $user_ids . " AS u ON u.oaid=a.id WHERE a.end_date > now() GROUP BY a.id";
+        $user_ids = "(SELECT user_id AS uid FROM Bid others INNER JOIN" . $auction_ids ."AS au ON au.uaid=others.auction_id WHERE others.user_id != '$uid')";
+        $bid_ids = "(SELECT DISTINCT auction_id AS oaid FROM Bid targets INNER JOIN " . $user_ids . " AS t ON t.uid=targets.user_id)";
+        $final_auctions = "SELECT a.* FROM Auction AS a INNER JOIN " . $bid_ids . " AS u ON u.oaid=a.id WHERE a.end_date > now() GROUP BY a.id";
         return db_fetch_all($final_auctions);
     }
 

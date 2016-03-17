@@ -9,6 +9,7 @@
         $name = $_POST['listingName'];
         $desc = $_POST['listingDescription'];
         $reserve_price = $_POST['reservePrice'];
+        $starting_price = $_POST['startingPrice'];
         $category_id = $_POST['category'];
         $end_date = strtotime($_POST['endDate']);
 
@@ -22,7 +23,7 @@
         }
         $item_id = new_item($name, $desc, $image, $imageProperties);
         new_item_category($category_id, $item_id);
-        new_auction($item_id, $reserve_price, $end_date, $_SESSION["id"]);
+        new_auction($item_id, $starting_price, $reserve_price, $end_date, $_SESSION["id"]);
         header("Location: index.php");
         die();
     }
@@ -99,6 +100,18 @@
                 <label class='col-md-1 control-label'>Image</label>
                 <div class='col-md-5'>
                 <input type="file" name="userImage" id="userImage">
+                </div>
+              </div>
+
+
+              <!--Starting Price-->
+              <div class='form-group'>
+                <label class='col-md-1 control-label'>Starting Price</label>
+                <div class='col-sm-3'>
+                  <div class="input-group">
+                    <span class="input-group-addon">£</span>
+                    <input type='text' class='form-control' name="startingPrice"  required>
+                  </div>
                 </div>
               </div>
 

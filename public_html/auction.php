@@ -31,7 +31,7 @@
         $seller_rating = $seller['seller_rating'];
     }
 
-    $lowest_price = $auction['reserve_price'];
+    $lowest_price = $auction['start_price'];
     $highest_bid_username = "N/A";
     $highest_bid_price = "No Bids Yet";
     if ($highest_bid) {
@@ -47,17 +47,32 @@
     }
 
     if (isset($_POST['placeBid'])) {
-        if ($item['owner_id'] === $_SESSION['id'] || $lowest_price > floatval($_POST['yourBid'])) {
+        if ($auction['seller_id'] === $_SESSION['id'] || $lowest_price > floatval($_POST['yourBid'])) {
             echo 'Your Bid is not Valid';
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
-            send_update_on_auctions($auction);
-            send_update_on_watch_list($auction, $_SESSION['id']);
+            if ($highest_bid) {
+                send_update_on_outbid($auction, $highest_bid["user_id"]);
+            }
+//            send_update_on_auctions($auction);
+//            send_update_on_watch_list($auction, $_SESSION['id']);
         }
     }
 
     $auction = get_auctions_id($_GET['auction_id']);
     $bids_count = get_num_bids_auction($auction['id']);
+    $highest_bid = get_highest_bid($auction['id']);
+
+    $lowest_price = $auction['start_price'];
+    $highest_bid_username = "N/A";
+    $highest_bid_price = "No Bids Yet";
+    if ($highest_bid) {
+        $lowest_price = $highest_bid['price'];
+        $highest_bid_username = find_user_id($highest_bid['user_id'])["name"];
+        $highest_bid_price = $lowest_price;
+    }
+    $lowest_price = $lowest_price + 1;
+
 
 ?>
 <!DOCTYPE html>
@@ -126,10 +141,14 @@
 
           <div class="panel-body">
             <div class="seller-info">
-              <span class="selling-info">Seller: <a href="profile.php?user_id=<?= $seller["id"] ?>">Seller link</a></span><!--PHP NEEDED: seller profile link-->
-              <span class="selling-info">Rating: <span name="seller-rating"></span><?= $seller_rating ?></span><!--PHP NEEDED: seller rating-->
+              <span class="selling-info">Seller: <a href="profile.php?user_id=<?= $seller["id"] ?>"><?= $seller["name"] ?></a></span><!--PHP NEEDED: seller profile link-->
+              <span class="selling-info">Rating: <span name="seller-rating"></span><?= $seller_rating ?></span><!--PHP NEEDED: seller rating--> <br/>
               <span class="selling-info">Bids: </span><span name="numBids"><?= $bids_count ?></span><!--PHP NEEDED: number of bids-->
-              <span class="selling-info">Highest Bid User: </span><span name="highestBid"><?= $highest_bid_username ?></span>
+              <span class="selling-info">Highest Bid User: </span>
+              <?php if ($highest_bid) { ?><a href="profile.php?user_id=<?= $highest_bid["user_id"] ?>" name="highestBid"><?= $highest_bid_username ?></a>
+              <?php } else { ?>
+              <span name="highestBid"><?= $highest_bid_username ?></span>
+              <?php } ?>
               <br>
               <!--PHP NEEDED: end date-->
               <!--JS or PHP NEEDED: Countdown from current time until end date-->

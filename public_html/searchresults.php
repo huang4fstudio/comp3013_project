@@ -27,7 +27,7 @@
     <?php
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-      require("../resources/templates/header.php");
+      require_once("../resources/templates/header.php");
     ?>
     <!--Wrapper for page content-->
     <div class="wrapper">
@@ -38,7 +38,8 @@
       </ul>
 
       <?php
-        require("../resources/modules/auctions.php");
+        require_once("../resources/modules/auctions.php");
+        require_once("../resources/modules/categories.php");
         $category = $_REQUEST['categoryQuery'];
         $searchQuery = $_REQUEST['searchQuery'];
 
@@ -49,7 +50,8 @@
         }
         else{
           $results = get_auctions_searchTerm_category($category, $searchQuery);
-          echo("<h4>Search results for '$searchQuery'</h4>");  //equals "Text"); //Get
+          $name = get_category_id($category)["name"];
+          echo("<h4>Search results for '$searchQuery' in '$name'</h4>"); //Get 
         }
         ?>
 
