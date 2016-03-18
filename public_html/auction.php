@@ -52,10 +52,10 @@
         } else {
             make_bid($auction['id'], floatval($_POST['yourBid']), $_SESSION['id']);
             if ($highest_bid) {
-                send_update_on_outbid($auction, $highest_bid["user_id"]);
+               send_update_on_outbid($auction, $highest_bid["user_id"]);
             }
 //            send_update_on_auctions($auction);
-//            send_update_on_watch_list($auction, $_SESSION['id']);
+            send_update_on_watch_list($auction, $_SESSION['id'], $highest_bid["user_id"]);
         }
     }
 

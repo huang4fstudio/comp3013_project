@@ -25,7 +25,7 @@
          
       //  echo $message;
          
-         $header = "From:no-response@auction.com\r\n";
+         $header = "From: no-response@auction.com\r\n";
         
          $header .= "MIME-Version: 1.0\r\n";
          $header .= "Content-type: text/html\r\n";
@@ -112,10 +112,10 @@
          }
          }
 
-         function send_update_on_watch_list($auction, $id){
+         function send_update_on_watch_list($auction, $id, $outbid_id){
 
          $item_id = $auction["item_id"];
-         $results = get_watching_users_item($item_id);
+         $results = get_watching_users_item($item_id, $outbid_id);
          $item = get_item_id($item_id);
          foreach ($results as $row) {
          if($row["user_id"]!=$id){
@@ -130,21 +130,21 @@
          $highest = get_highest_bid($auction["id"]);
          
          $message .= "<b>A new bid was made</b><br>";
-         $message .= "<b>User :".$highest["user_id"]."</b><br>";
+         $message .= "<b>User :" . find_user_id($highest["user_id"])["name"] . "</b><br>";
          $message .= "<b>Price :£".$highest["price"]."</b><br>";
          $message .= "<b>Time : ".$highest["time"]."</b><br>";
 
          
          
-            $header = "From:no-response@auction.com \r\n";
+            $header = "From: no-response@auction.com\r\n";
         
             $header .= "MIME-Version: 1.0\r\n";
             $header .= "Content-type: text/html\r\n";
-   //      echo $message;
+         echo $message;
             $retval = mail ($to,$subject,$message,$header);
          
             if( $retval == true ) {
-   //         echo "Message sent successfully...";
+           echo "Message sent successfully...";
             }else {
    //         echo "Message could not be sent...";
          }
@@ -196,7 +196,7 @@
          $seller = find_email($auction["seller_id"]);
 
          $to = $seller["email"];
-         $subject = "Your item has been sold";
+         $subject = "Your item has not been sold";
          
          $message = "<b>Updates on your item</b><br>";
          $message .= "Item: <h1>".$item["name"]."</h1><br>";

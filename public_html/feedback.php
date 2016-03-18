@@ -1,21 +1,21 @@
 <?php
     session_start();
     require_once("../resources/modules/check_login.php");
-    check_login(false);
+    check_login(true);
     if (!isset($_GET['auction_id'])) {
         header("Location: index.php");
         die();
     }
     require_once("../resources/modules/auctions.php");
+    require_once("../resources/modules/feedbacks.php");
     $auction = get_auctions_id($_GET['auction_id']);
-
-    if (get_feedback($auction['id']) || !check_auction_feedback($auction_id, $_SESSION['id'])) {
+    if (get_feedback($auction['id']) || !check_auction_feedback($auction['id'], $_SESSION['id'])) {
         header("Location: index.php");
         die();
     }
     if (isset($_POST['submitFeedback'])) {
         require_once("../resources/modules/feedbacks.php");
-        require_once("../resources/modules/uses.php");
+        require_once("../resources/modules/users.php");
 
         $rating = intval($_POST['rating']);
         $comment = intval($_POST['comment']);

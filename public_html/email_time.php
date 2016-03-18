@@ -17,7 +17,7 @@
    $results1 = get_auctions_sold_today();
    foreach ($results1 as $auction1) {
    	send_update_on_bought($auction1);
-   	send_update_on_sold($auction2);
+   	send_update_on_sold($auction1);
    }
 
    $results2 = get_auctions_not_sold_today();
