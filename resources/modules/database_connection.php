@@ -37,19 +37,11 @@
 
     function db_connect() {
 
-   //     $user = 'kirthi';
- //       $user = 'b43ee9b63abc2a';
-//       $password = '9afd1fd9';
-//         $password = 'kirthi';
-          $user = 'auction2';
-          $password = 'password';
-          $host = 'localhost';
-          $port = 8889;
-          $db = 'COMP3013';
-   //      $db = 'acsm_2d90a53fdf17f22';
-//        $db = 'Auction_database';
-  //      $host = 'eu-cdbr-azure-north-d.cloudapp.net';
- //       $port = 3306;
+        $user = 'b43ee9b63abc2a';
+         $password = '9afd1fd9';
+         $db = 'acsm_2d90a53fdf17f22';
+        $host = 'eu-cdbr-azure-north-d.cloudapp.net';
+       $port = 3306;
         // Define connection as a static variable, to avoid connecting more than once
         static $connection;
 
