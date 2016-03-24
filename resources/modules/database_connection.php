@@ -37,10 +37,10 @@
 
     function db_connect() {
 
-        $user = 'b43ee9b63abc2a';
-         $password = '9afd1fd9';
-         $db = 'acsm_2d90a53fdf17f22';
-        $host = 'eu-cdbr-azure-north-d.cloudapp.net';
+        $user = 'b36dec2baa795f';
+         $password = '78c37b28';
+         $db = 'phpsucks';
+        $host = 'us-cdbr-azure-southcentral-e.cloudapp.net';
        $port = 3306;
         // Define connection as a static variable, to avoid connecting more than once
         static $connection;
